@@ -10,6 +10,10 @@ ASP.NET Server Starter Kit
 
 **Source**: [github.com/kriasoft/AspNet-Server-Template](https://github.com/kriasoft/AspNet-Server-Template)
 
+### Data Model
+
+![ASP.NET Identity Data Model](https://dl.dropboxusercontent.com/u/16006521/Screens/asp.net-identity-ef-diagram.png)
+
 ### Credits
 
  * Konstantin Tarkus -- [@koistya](https://twitter.com/koistya)
