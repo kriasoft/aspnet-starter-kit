@@ -20,7 +20,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <SqlServerVerification>True</SqlServerVerification>
+    <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
   </PropertyGroup>
@@ -57,5 +57,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Reference Data" />
+    <Folder Include="Scripts" />
+    <Folder Include="Tables" />
+    <Folder Include="User Defined Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Reference Data\User.sql" />
+    <None Include="Reference Data\UserRole.sql" />
+    <None Include="Reference Data\UserUserRole.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\UserClaim.sql" />
+    <Build Include="Tables\UserLogin.sql" />
+    <Build Include="Tables\UserRole.sql" />
+    <Build Include="Tables\UserUserRole.sql" />
+    <Build Include="User Defined Types\Email.sql" />
+    <Build Include="User Defined Types\Flag.sql" />
+    <Build Include="User Defined Types\Name.sql" />
+    <Build Include="User Defined Types\Phone.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\Local.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment.sql" />
   </ItemGroup>
 </Project>
