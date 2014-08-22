@@ -78,7 +78,7 @@
     <Build Include="User Defined Types\Phone.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Publish Profiles\Local.publish.xml" />
+    <None Include="Publish Profiles\*.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />
