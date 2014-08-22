@@ -11,3 +11,6 @@
 3. Hit [Publish]
 
 **Note**: You may want to add more publishing profiles, e.g. `Test.publish.xml`, `Production.publish.xml`
+
+Alternatively you can handle `App.Database.dacpac` file (generated during a build)
+to your DBA and he or she will deploy or update the database for you.
