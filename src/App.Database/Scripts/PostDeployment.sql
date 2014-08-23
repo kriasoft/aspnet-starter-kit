@@ -9,7 +9,9 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]                    
 --------------------------------------------------------------------------------------
 */
-
+if '$(TestingData)' = '1'
+begin
 :r "..\Reference Data\User.sql"
 :r "..\Reference Data\UserRole.sql"
 :r "..\Reference Data\UserUserRole.sql"
+end

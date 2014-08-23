@@ -2,11 +2,13 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
-    <TargetDatabaseName>AspNetServer</TargetDatabaseName>
-    <DeployScriptFileName>Database.sql</DeployScriptFileName>
-    <TargetConnectionString>Data Source=(LocalDb)\v11.0;Integrated Security=True;Pooling=False;Connect Timeout=30</TargetConnectionString>
-    <BlockWhenDriftDetected>True</BlockWhenDriftDetected>
-    <RegisterDataTierApplication>True</RegisterDataTierApplication>
+    <TargetDatabaseName>App.Database</TargetDatabaseName>
+    <DeployScriptFileName>App.Database.sql</DeployScriptFileName>
     <ProfileVersionNumber>1</ProfileVersionNumber>
   </PropertyGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="TestingData">
+      <Value>1</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
 </Project>
