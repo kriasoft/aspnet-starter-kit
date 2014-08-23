@@ -10,17 +10,24 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 using App.Server.Properties;
+
 using Microsoft.AspNet.Identity;
 
 namespace App.Server.Data
 {
-    public partial class UserStore :
-        IQueryableUserStore<User, int>, IUserPasswordStore<User, int>, IUserLoginStore<User, int>,
-        IUserClaimStore<User, int>, IUserRoleStore<User, int>, IUserSecurityStampStore<User, int>,
-        IUserEmailStore<User, int>, IUserPhoneNumberStore<User, int>, IUserTwoFactorStore<User, int>,
+    public class UserStore :
+        IQueryableUserStore<User, int>,
+        IUserPasswordStore<User, int>,
+        IUserLoginStore<User, int>,
+        IUserClaimStore<User, int>,
+        IUserRoleStore<User, int>,
+        IUserSecurityStampStore<User, int>,
+        IUserEmailStore<User, int>,
+        IUserPhoneNumberStore<User, int>,
+        IUserTwoFactorStore<User, int>,
         IUserLockoutStore<User, int>
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext _db;
 
         public UserStore(ApplicationDbContext db)
         {
@@ -29,51 +36,51 @@ namespace App.Server.Data
                 throw new ArgumentNullException("db");
             }
 
-            this.db = db;
+            _db = db;
         }
 
-        //// IQueryableUserStore<User, int>
+        // IQueryableUserStore<User, int>
 
         public IQueryable<User> Users
         {
-            get { return this.db.Users; }
+            get { return _db.Users; }
         }
 
-        //// IUserStore<User, Key>
+        // IUserStore<User, Key>
 
         public Task CreateAsync(User user)
         {
-            this.db.Users.Add(user);
-            return this.db.SaveChangesAsync();
+            _db.Users.Add(user);
+            return _db.SaveChangesAsync();
         }
 
         public Task DeleteAsync(User user)
         {
-            this.db.Users.Remove(user);
-            return this.db.SaveChangesAsync();
+            _db.Users.Remove(user);
+            return _db.SaveChangesAsync();
         }
 
         public Task<User> FindByIdAsync(int userId)
         {
-            return this.db.Users
+            return _db.Users
                 .Include(u => u.Logins).Include(u => u.Roles).Include(u => u.Claims)
                 .FirstOrDefaultAsync(u => u.Id.Equals(userId));
         }
 
         public Task<User> FindByNameAsync(string userName)
         {
-            return this.db.Users
+            return _db.Users
                 .Include(u => u.Logins).Include(u => u.Roles).Include(u => u.Claims)
                 .FirstOrDefaultAsync(u => u.UserName == userName);
         }
 
         public Task UpdateAsync(User user)
         {
-            this.db.Entry<User>(user).State = EntityState.Modified;
-            return this.db.SaveChangesAsync();
+            _db.Entry(user).State = EntityState.Modified;
+            return _db.SaveChangesAsync();
         }
 
-        //// IUserPasswordStore<User, Key>
+        // IUserPasswordStore<User, Key>
 
         public Task<string> GetPasswordHashAsync(User user)
         {
@@ -101,7 +108,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserLoginStore<User, Key>
+        // IUserLoginStore<User, Key>
 
         public Task AddLoginAsync(User user, UserLoginInfo login)
         {
@@ -133,14 +140,14 @@ namespace App.Server.Data
             var provider = login.LoginProvider;
             var key = login.ProviderKey;
 
-            var userLogin = await this.db.UserLogins.FirstOrDefaultAsync(l => l.LoginProvider == provider && l.ProviderKey == key);
+            var userLogin = await _db.UserLogins.FirstOrDefaultAsync(l => l.LoginProvider == provider && l.ProviderKey == key);
 
             if (userLogin == null)
             {
                 return default(User);
             }
 
-            return await this.db.Users
+            return await _db.Users
                 .Include(u => u.Logins).Include(u => u.Roles).Include(u => u.Claims)
                 .FirstOrDefaultAsync(u => u.Id.Equals(userLogin.UserId));
         }
@@ -180,7 +187,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserClaimStore<User, int>
+        // IUserClaimStore<User, int>
 
         public Task AddClaimAsync(User user, Claim claim)
         {
@@ -229,15 +236,15 @@ namespace App.Server.Data
                 user.Claims.Remove(item);
             }
 
-            foreach (var item in this.db.UserClaims.Where(uc => uc.UserId.Equals(user.Id) && uc.ClaimValue == claim.Value && uc.ClaimType == claim.Type).ToList())
+            foreach (var item in _db.UserClaims.Where(uc => uc.UserId.Equals(user.Id) && uc.ClaimValue == claim.Value && uc.ClaimType == claim.Type).ToList())
             {
-                this.db.UserClaims.Remove(item);
+                _db.UserClaims.Remove(item);
             }
 
             return Task.FromResult(0);
         }
 
-        //// IUserRoleStore<User, int>
+        // IUserRoleStore<User, int>
 
         public Task AddToRoleAsync(User user, string roleName)
         {
@@ -251,7 +258,7 @@ namespace App.Server.Data
                 throw new ArgumentException(Resources.ValueCannotBeNullOrEmpty, "roleName");
             }
 
-            var userRole = this.db.UserRoles.SingleOrDefault(r => r.Name == roleName);
+            var userRole = _db.UserRoles.SingleOrDefault(r => r.Name == roleName);
 
             if (userRole == null)
             {
@@ -269,7 +276,7 @@ namespace App.Server.Data
                 throw new ArgumentNullException("user");
             }
 
-            return Task.FromResult<IList<string>>(user.Roles.Join(this.db.UserRoles, ur => ur.Id, r => r.Id, (ur, r) => r.Name).ToList());
+            return Task.FromResult<IList<string>>(user.Roles.Join(_db.UserRoles, ur => ur.Id, r => r.Id, (ur, r) => r.Name).ToList());
         }
 
         public Task<bool> IsInRoleAsync(User user, string roleName)
@@ -284,9 +291,7 @@ namespace App.Server.Data
                 throw new ArgumentException(Resources.ValueCannotBeNullOrEmpty, "roleName");
             }
 
-            return
-                Task.FromResult<bool>(
-                    this.db.UserRoles.Any(r => r.Name == roleName && r.Users.Any(u => u.Id.Equals(user.Id))));
+            return Task.FromResult(_db.UserRoles.Any(r => r.Name == roleName && r.Users.Any(u => u.Id.Equals(user.Id))));
         }
 
         public Task RemoveFromRoleAsync(User user, string roleName)
@@ -311,7 +316,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserSecurityStampStore<User, int>
+        // IUserSecurityStampStore<User, int>
 
         public Task<string> GetSecurityStampAsync(User user)
         {
@@ -334,11 +339,11 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserEmailStore<User, int>
+        // IUserEmailStore<User, int>
 
         public Task<User> FindByEmailAsync(string email)
         {
-            return this.db.Users
+            return _db.Users
                 .Include(u => u.Logins).Include(u => u.Roles).Include(u => u.Claims)
                 .FirstOrDefaultAsync(u => u.Email == email);
         }
@@ -385,7 +390,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserPhoneNumberStore<User, int>
+        // IUserPhoneNumberStore<User, int>
 
         public Task<string> GetPhoneNumberAsync(User user)
         {
@@ -429,7 +434,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserTwoFactorStore<User, int>
+        // IUserTwoFactorStore<User, int>
 
         public Task<bool> GetTwoFactorEnabledAsync(User user)
         {
@@ -452,7 +457,7 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IUserLockoutStore<User, int>
+        // IUserLockoutStore<User, int>
 
         public Task<int> GetAccessFailedCountAsync(User user)
         {
@@ -531,19 +536,19 @@ namespace App.Server.Data
             return Task.FromResult(0);
         }
 
-        //// IDisposable
+        // IDisposable
 
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && this.db != null)
+            if (disposing && _db != null)
             {
-                this.db.Dispose();
+                _db.Dispose();
             }
         }
     }

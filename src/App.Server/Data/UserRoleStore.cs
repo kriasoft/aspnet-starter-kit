@@ -12,21 +12,26 @@ namespace App.Server.Data
 {
     public class UserRoleStore : IQueryableRoleStore<UserRole, int>
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext _db;
 
         public UserRoleStore(ApplicationDbContext db)
         {
-            this.db = db;
+            if (db == null)
+            {
+                throw new ArgumentNullException("db");
+            }
+
+            _db = db;
         }
 
-        //// IQueryableRoleStore<UserRole, TKey>
+        // IQueryableRoleStore<UserRole, TKey>
 
         public IQueryable<UserRole> Roles
         {
-            get { return this.db.UserRoles; }
+            get { return _db.UserRoles; }
         }
 
-        //// IRoleStore<UserRole, TKey>
+        // IRoleStore<UserRole, TKey>
 
         public virtual Task CreateAsync(UserRole role)
         {
@@ -35,8 +40,8 @@ namespace App.Server.Data
                 throw new ArgumentNullException("role");
             }
 
-            this.db.UserRoles.Add(role);
-            return this.db.SaveChangesAsync();
+            _db.UserRoles.Add(role);
+            return _db.SaveChangesAsync();
         }
 
         public Task DeleteAsync(UserRole role)
@@ -46,18 +51,18 @@ namespace App.Server.Data
                 throw new ArgumentNullException("role");
             }
 
-            this.db.UserRoles.Remove(role);
-            return this.db.SaveChangesAsync();
+            _db.UserRoles.Remove(role);
+            return _db.SaveChangesAsync();
         }
 
         public Task<UserRole> FindByIdAsync(int roleId)
         {
-            return this.db.UserRoles.FindAsync(new[] { roleId });
+            return _db.UserRoles.FindAsync(new[] { roleId });
         }
 
         public Task<UserRole> FindByNameAsync(string roleName)
         {
-            return this.db.UserRoles.FirstOrDefaultAsync(r => r.Name == roleName);
+            return _db.UserRoles.FirstOrDefaultAsync(r => r.Name == roleName);
         }
 
         public Task UpdateAsync(UserRole role)
@@ -67,23 +72,23 @@ namespace App.Server.Data
                 throw new ArgumentNullException("role");
             }
 
-            this.db.Entry(role).State = EntityState.Modified;
-            return this.db.SaveChangesAsync();
+            _db.Entry(role).State = EntityState.Modified;
+            return _db.SaveChangesAsync();
         }
 
-        //// IDisposable
+        // IDisposable
 
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && this.db != null)
+            if (disposing && _db != null)
             {
-                this.db.Dispose();
+                _db.Dispose();
             }
         }
     }
