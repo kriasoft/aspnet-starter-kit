@@ -1,5 +1,4 @@
-﻿SET IDENTITY_INSERT [dbo].[User] ON;
-GO
+﻿SET IDENTITY_INSERT [dbo].[User] ON
 
 MERGE INTO [dbo].[User] AS Target
 USING (VALUES
@@ -68,7 +67,5 @@ VALUES (
     [LockoutEnabled],
     [AccessFailedCount]
 );
-GO
 
 SET IDENTITY_INSERT [dbo].[User] OFF;
-GO
