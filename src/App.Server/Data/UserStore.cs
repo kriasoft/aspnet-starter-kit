@@ -37,7 +37,13 @@ namespace App.Server.Data
             }
 
             _db = db;
+            AutoSaveChanges = true;
         }
+
+        /// <summary>
+        ///     If true will call SaveChanges after CreateAsync/UpdateAsync/DeleteAsync
+        /// </summary>
+        public bool AutoSaveChanges { get; set; }
 
         // IQueryableUserStore<User, int>
 
@@ -50,14 +56,24 @@ namespace App.Server.Data
 
         public Task CreateAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             _db.Users.Add(user);
-            return _db.SaveChangesAsync();
+            return SaveChanges();
         }
 
         public Task DeleteAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             _db.Users.Remove(user);
-            return _db.SaveChangesAsync();
+            return SaveChanges();
         }
 
         public Task<User> FindByIdAsync(int userId)
@@ -76,8 +92,13 @@ namespace App.Server.Data
 
         public Task UpdateAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             _db.Entry(user).State = EntityState.Modified;
-            return _db.SaveChangesAsync();
+            return SaveChanges();
         }
 
         // IUserPasswordStore<User, Key>
@@ -540,16 +561,11 @@ namespace App.Server.Data
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private Task SaveChanges()
         {
-            if (disposing && _db != null)
-            {
-                _db.Dispose();
-            }
+            return AutoSaveChanges ? _db.SaveChangesAsync() : Task.FromResult(0);
         }
     }
 }

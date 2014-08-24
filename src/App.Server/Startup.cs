@@ -27,8 +27,8 @@ namespace App.Server
 
         public void Configuration(IAppBuilder app)
         {
-            //// For more information on how to configure your application, visit
-            //// http://go.microsoft.com/fwlink/?LinkID=316888
+            // For more information on how to configure your application, visit
+            // http://go.microsoft.com/fwlink/?LinkID=316888
 
             // Configure Dependency Injection (DI)
             app.CreatePerOwinContext(() => new ApplicationDbContext());
@@ -89,7 +89,7 @@ namespace App.Server
             {
                 TokenEndpointPath = new PathString("/token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
-                AuthorizeEndpointPath = new PathString("/api/account/external-login"),
+                AuthorizeEndpointPath = new PathString("/api/account/authorize"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };
