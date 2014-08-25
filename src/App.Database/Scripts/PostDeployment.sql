@@ -10,6 +10,9 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r "..\Reference Data\User.sql"
 :r "..\Reference Data\UserRole.sql"
+if '$(TestingData)' = '1'
+begin
+:r "..\Reference Data\User.sql"
 :r "..\Reference Data\UserUserRole.sql"
+end

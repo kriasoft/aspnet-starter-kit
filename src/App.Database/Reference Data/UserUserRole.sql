@@ -9,4 +9,3 @@ WHEN NOT MATCHED BY TARGET THEN
 -- Insert new rows
 INSERT ([UserID], [RoleID])
 VALUES ([UserID], [RoleID]);
-GO
