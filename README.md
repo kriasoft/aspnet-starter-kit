@@ -36,9 +36,10 @@
 
 ![ASP.NET Identity Data Model](https://dl.dropboxusercontent.com/u/16006521/Screens/asp.net-identity-ef-diagram.png)
 
-### Credits
+### Contributors
 
  * Konstantin Tarkus — [@koistya](https://twitter.com/koistya)
+ * Andrey Kurdyumov — [github.com/kant2002](https://github.com/kant2002)
 
 ### Support
 
