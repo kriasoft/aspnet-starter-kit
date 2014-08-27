@@ -84,7 +84,7 @@
     <PostDeploy Include="Scripts\PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <SqlCmdVariable Include="TestingData">
+    <SqlCmdVariable Include="ImportReferenceData">
       <DefaultValue>1</DefaultValue>
       <Value>$(SqlCmdVar__1)</Value>
     </SqlCmdVariable>
