@@ -2,7 +2,9 @@
 // Licensed under the Apache License, Version 2.0.  See LICENSE.txt in the project root for license information.
 
 using System;
+using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 
 using App.Server.Data;
 using App.Server.Security;
@@ -13,6 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json.Serialization;
 using Owin;
 
 [assembly: OwinStartup(typeof(App.Server.Startup))]
@@ -63,11 +66,16 @@ namespace App.Server
 
             // Configure Web API
             var config = new HttpConfiguration();
+            var formatters = config.Formatters;
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            formatters.Remove(formatters.XmlFormatter);
+            formatters.Remove(formatters.FormUrlEncodedFormatter);
+            formatters.Remove(formatters.First(f => f.GetType() == typeof(JQueryMvcFormUrlEncodedFormatter)));
             
             // Web API routes
             config.MapHttpAttributeRoutes();
