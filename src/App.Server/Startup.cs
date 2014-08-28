@@ -5,8 +5,10 @@ using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Http.Validation;
 
 using App.Server.Data;
+using App.Server.Http.Validation;
 using App.Server.Security;
 using App.Server.Services;
 
@@ -33,7 +35,8 @@ namespace App.Server
             // For more information on how to configure your application, visit
             // http://go.microsoft.com/fwlink/?LinkID=316888
 
-            // Configure Dependency Injection (DI)
+            // Dependency Injection (DI)
+            // ---------------------------------------------------------------------------------------------------------
             app.CreatePerOwinContext(() => new ApplicationDbContext());
             app.CreatePerOwinContext<ApplicationUserManager>((options, context) =>
             {
@@ -61,22 +64,26 @@ namespace App.Server
                 return manager;
             });
 
-            // Map SignalR hubs to the app builder pipeline at "/signalr”.
-            app.MapSignalR();
-
-            // Configure Web API
+            // ASP.NET Web API & SignalR
+            // ---------------------------------------------------------------------------------------------------------
             var config = new HttpConfiguration();
             var formatters = config.Formatters;
+            var services = config.Services;
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-            formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            // Remove unused formatters
             formatters.Remove(formatters.XmlFormatter);
             formatters.Remove(formatters.FormUrlEncodedFormatter);
             formatters.Remove(formatters.First(f => f.GetType() == typeof(JQueryMvcFormUrlEncodedFormatter)));
-            
+
+            // Customize JSON serialization and validation error responses
+            formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            services.Replace(typeof(IBodyModelValidator), new CustomBodyModelValidator(services.GetBodyModelValidator()));
+
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
@@ -86,8 +93,14 @@ namespace App.Server
             
             app.UseWebApi(config);
 
-            // Enable the application to use a cookie to store information for the signed in user
-            // and to use a cookie to temporarily store information about a user logging in with a third party login provider
+            // Map SignalR hubs to the app builder pipeline at "/signalr”.
+            app.MapSignalR();
+
+            // Authentication & Authorization
+            // ---------------------------------------------------------------------------------------------------------
+
+            // Enable the application to use a cookie to store information for the signed in user and to use a cookie
+            // to temporarily store information about a user logging in with a third party login provider
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
