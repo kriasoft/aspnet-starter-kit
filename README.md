@@ -1,5 +1,4 @@
-﻿ASP.NET Web Application Starter Kit
------------------------------------
+## ASP.NET Web Application Starter Kit &nbsp; [![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
 
 > This project template is an ASP.NET solution skeleton for a typical web
 > application or single-page application (SPA). You can use it to quickly
