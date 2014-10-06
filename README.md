@@ -50,7 +50,7 @@ or schedule a mentoring session on [codementor.io/koistya](https://www.codemento
 Source code is licensed under the Apache License 2.0. See [LICENSE.txt](./LICENSE.txt) file in the project root.
 Documentation to the project is licensed under the [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) license.
 
- [1]: https://github.com/kriasoft/React-Seed
+ [1]: https://github.com/kriasoft/react-starter-kit
  [2]: http://yeoman.io/
  [3]: http://msdn.microsoft.com/en-us/data/tools.aspx
  [4]: http://owin.org/
