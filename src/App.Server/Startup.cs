@@ -70,6 +70,9 @@ namespace App.Server
             var formatters = config.Formatters;
             var services = config.Services;
 
+            // Enable CORS for Web API
+            config.UseCorsFromAppSettings();
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
@@ -98,6 +101,9 @@ namespace App.Server
 
             // Authentication & Authorization
             // ---------------------------------------------------------------------------------------------------------
+
+            // Enable CORS for ASP.NET Identity
+            app.UseCorsFromAppSettings("/token");
 
             // Enable the application to use a cookie to store information for the signed in user and to use a cookie
             // to temporarily store information about a user logging in with a third party login provider
