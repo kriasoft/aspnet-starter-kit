@@ -18,7 +18,7 @@ namespace Owin
 
         static CorsExtensions()
         {
-            Cors = string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["cors:Origin"]) ?
+            Cors = string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["cors:Origins"]) ?
                 null :
                 new EnableCorsAttribute(
                     WebConfigurationManager.AppSettings["cors:Origins"],
