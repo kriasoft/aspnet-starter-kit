@@ -145,7 +145,7 @@ namespace App.Server.Data
 
             var userLogin = Activator.CreateInstance<UserLogin>();
             userLogin.UserId = user.Id;
-            userLogin.LoginProvider = login.ProviderKey;
+            userLogin.LoginProvider = login.LoginProvider;
             userLogin.ProviderKey = login.ProviderKey;
             user.Logins.Add(userLogin);
             return Task.FromResult(0);
