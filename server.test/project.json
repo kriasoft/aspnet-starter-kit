@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+
+  "buildOptions": {
+    "preserveCompilationContext": true
+  },
+
+  "dependencies": {
+    "dotnet-test-xunit": "1.0.0-rc2-*",
+    "Microsoft.NETCore.App": { "version": "1.0.0-rc2-3002702", "type": "platform" },
+    "xunit": "2.1.0-rc2-*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "testRunner": "xunit",
+
+  "tooling": {
+    "defaultNamespace": "server.test"
+  }
+}
