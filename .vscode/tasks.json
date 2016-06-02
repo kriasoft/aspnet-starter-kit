@@ -1,0 +1,28 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "0.1.0",
+  "command": "dotnet",
+  "isShellCommand": true,
+  "args": [],
+  "tasks": [
+    {
+      "taskName": "build",
+      "args": ["server"],
+      "isBuildCommand": true,
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "test",
+      "args": ["server.test"],
+      "isTestCommand": true,
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "publish",
+      "args": ["-o", "build", "-f", "netcoreapp1.0", "server"],
+      "isBuildCommand": true,
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
