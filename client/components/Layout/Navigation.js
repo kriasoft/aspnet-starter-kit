@@ -13,6 +13,7 @@ import { Link } from 'react-app';
 class Navigation extends React.Component {
 
   componentDidMount() {
+    console.log('refs', this.refs);
     window.componentHandler.upgradeElement(this.refs.root);
   }
 

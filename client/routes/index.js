@@ -8,13 +8,17 @@
  */
 
 import homeRoute from './home/route';
+import aboutRoute from './about/route';
+import errorRoute from './error/route';
 
 const routes = {
 
   path: '/',
 
   children: [
-    homeRoute
+    homeRoute,
+    aboutRoute,
+    errorRoute,
   ]
 
 };

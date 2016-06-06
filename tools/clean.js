@@ -14,8 +14,11 @@ const task = require('./lib/task');
 
 module.exports = task('clean', Promise.resolve()
   .then(() => del(
-    ['build/*', '!build/.git', 'public/assets/*'],
+    ['build/*', 'public/assets/*', '!build/.git'],
     { dot: true, cwd: path.resolve(__dirname, '../') }
   ))
-  .then(() => mkdirp.sync(path.resolve(__dirname, '../build/public/assets')))
+  .then(() => {
+    mkdirp.sync(path.resolve(__dirname, '../build/public/assets'));
+    mkdirp.sync(path.resolve(__dirname, '../public/assets'));
+  })
 );

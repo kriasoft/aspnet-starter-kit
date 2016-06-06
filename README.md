@@ -1,4 +1,4 @@
-# ASP.NET Core Starter Kit &nbsp; ![Status](https://img.shields.io/badge/status-early%20preview-orange.svg?style=flat-square) [![Tips](https://img.shields.io/badge/donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSV6K6LZU2VGW)
+# ASP.NET Core Starter Kit &nbsp; ![Status](https://img.shields.io/badge/status-early%20preview-orange.svg?style=flat-square) [![Online Chat](http://img.shields.io/badge/chat-%23aspnet--starter--kit-blue.svg?style=flat-square)](https://gitter.im/kriasoft/aspnet-starter-kit) [![Tips](https://img.shields.io/badge/donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSV6K6LZU2VGW)
 
 > [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) is an opinionated
 > boilerplate for web development based on [.NET Core](http://dotnet.github.io/),
@@ -84,9 +84,41 @@ app into a distributable format and upload that to Windows Azure App Service, si
 $ npm run deploy                # Same as running: node tools/deploy --production
 ```
 
+
+### References
+
+<table width="100%">
+  <tr>
+    <td width="185">
+      <a href="http://amzn.to/25J77RT">
+        <img src="http://ecx.images-amazon.com/images/I/51PoyFDMopL._SX150.jpg" width="150" height="185" alt="C# 6 and .NET Core 1.0: Modern Cross-Platform Development" />
+      </a>
+    </td>
+    <td>
+      <p>
+        <strong><a href="http://amzn.to/25J77RT">C# 6 and .NET Core 1.0: Modern Cross-Platform Development</a></strong><br />
+        <sup>by Mark J. Price (Mar 2016)</sup>
+      </p>
+      <p>In this book you will learn:</p>
+      <ul>
+        <li>Build cross-platform applications using C# 6 and .NET Core 1.0</li>
+        <li>Explore ASP.NET Core 1.0 and learn how to create professional web applications</li>
+        <li>Improve your application's performance using multitasking</li>
+        <li>Use Entity Framework Core 1.0 and learn how to build Code-First databases</li>
+        <li>Master object-oriented programming with C# to increase code reuse and efficiency</li>
+        <li>Familiarize yourself with cross-device app development using the Universal Windows Platform and XAML</li>
+        <li>Query and manipulate data using LINQ</li>
+        <li>Protect your data by using encryption and hashing</li>
+      </p>
+    </td>
+  </tr>
+</table>
+
+
 ### Related Projects
 
 * [React Starter Kit](https://github.com/kriasoft/react-starter-kit) — Isomorphic web app boilerplate (Node.js, Express, GraphQL, React)
+* [F# Starter Kit](https://github.com/kriasoft/fsharp-starter-kit) — Web app boilerplate (.NET Core, F#, JavaScript, Babel, Webpack, React)
 * [Babel Starter Kit](https://github.com/kriasoft/babel-starter-kit) — JavaScript library boilerplate (ES2015+, Babel, Rollup)
 * [React Static Boilerplate](https://github.com/koistya/react-static-boilerplate) — Generate static websites from React components with Webpack
 * [Universal Router](https://github.com/kriasoft/universal-router) — Isomorphic router for web and single-page applications (SPA)

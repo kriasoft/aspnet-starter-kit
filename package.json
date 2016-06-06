@@ -11,6 +11,7 @@
     "react-dom": "^15.1.0"
   },
   "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
@@ -85,6 +86,7 @@
     }
   },
   "scripts": {
+    "postinstall": "dotnet restore",
     "eslint": "eslint client client.test tools",
     "stylelint": "stylelint \"client/components/**/*.css\" \"client/routes/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",

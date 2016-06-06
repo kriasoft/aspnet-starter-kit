@@ -8,11 +8,17 @@
  */
 
 import React from 'react';
-import { createApp } from 'react-app';
+import { Layout } from '../../components'
 
-import routes from './routes';
+function ErrorPage() {
+  return (
+    <Layout>
+      <h1>Page Not Found</h1>
+      <p>
+        Sorry, this page does not exist.
+      </p>
+    </Layout>
+  );
+}
 
-createApp({
-  routes,
-  container: document.getElementById('container'),
-});
+export default ErrorPage;

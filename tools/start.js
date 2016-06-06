@@ -31,10 +31,10 @@ module.exports = task('start', () => Promise.resolve()
   // Launch ASP.NET Core Server in a child process
   .then(() => new Promise(resolve => {
     const options = {
-      cwd: path.resolve(__dirname, '../'),
+      cwd: path.resolve(__dirname, '../server/'),
       stdio: ['ignore', 'pipe', 'inherit']
     };
-    cp.spawn('dotnet', ['run', '-p', 'server'], options).stdout.on('data', data => {
+    cp.spawn('dotnet', ['run'], options).stdout.on('data', data => {
       process.stdout.write(data);
       if (data.indexOf('Application started.') !== -1) {
         resolve();

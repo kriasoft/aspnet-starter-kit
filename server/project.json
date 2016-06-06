@@ -12,14 +12,18 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
-    "Microsoft.Extensions.FileProviders.Physical": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
-    "Microsoft.NETCore.App": { "version": "1.0.0-rc2-3002702", "type": "platform" }
+    "Microsoft.NETCore.App": { "version": "1.0.0-rc2-3002702", "type": "platform" },
+    "Newtonsoft.Json": "9.0.1-beta1"
   },
 
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": "dnxcore50"
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
     }
   },
 

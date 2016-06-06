@@ -7,12 +7,15 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { createApp } from 'react-app';
+import About from './About';
 
-import routes from './routes';
+const path = '/';
 
-createApp({
-  routes,
-  container: document.getElementById('container'),
-});
+const action = () => {
+  return {
+    title: 'About Us',
+    component: About
+  };
+};
+
+export default { path, action };

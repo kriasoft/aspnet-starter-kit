@@ -7,12 +7,15 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { createApp } from 'react-app';
+import ErrorPage from './ErrorPage';
 
-import routes from './routes';
+const path = '/';
 
-createApp({
-  routes,
-  container: document.getElementById('container'),
-});
+const action = () => {
+  return {
+    title: 'Page Not Found',
+    component: ErrorPage
+  };
+};
+
+export default { path, action };

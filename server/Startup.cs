@@ -5,9 +5,10 @@
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace server
 {
@@ -21,24 +22,53 @@ namespace server
         {
             factory.AddConsole(LogLevel.Trace);
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "public"))
-            });
+            app.UseStaticFiles();
 
-            app.UseWelcomePage();
+            dynamic assets;
+
+            using (var stream = File.OpenRead(Path.Combine(env.WebRootPath, "./assets/assets.json")))
+            using (var reader = new StreamReader(stream))
+            {
+                assets = JsonConvert.DeserializeObject(reader.ReadToEnd());
+            }
+
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.WriteAsync($@"<!doctype html>
+<html lang="""">
+  <head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""x-ua-compatible"" content=""ie=edge"">
+    <title>F# Starter Kit</title>
+    <meta name=""description"" content="""">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+    <link rel=""stylesheet"" href=""https://fonts.googleapis.com/icon?family=Material+Icons"">
+    <link rel=""stylesheet"" href=""https://cdn.rawgit.com/tleunen/react-mdl/master/extra/material.min.css"">
+    <link rel=""stylesheet"" href=""https://cdn.rawgit.com/isagalaev/highlight.js/master/src/styles/default.css"">
+    <link rel=""apple-touch-icon"" href=""apple-touch-icon.png"">
+  </head>
+  <body>
+    <div id=""container""></div>
+    <script src=""https://cdn.rawgit.com/tleunen/react-mdl/master/extra/material.min.js""></script>
+    <script src=""{assets.main.js}""></script>
+    <script>
+      window.ga=function(){{ga.q.push(arguments)}};ga.q=[];ga.l=+new Date;
+      ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+    </script>
+    <script src=""https://www.google-analytics.com/analytics.js"" async defer></script>
+  </body>
+</html>");
+            });
         }
 
         public static void Main()
         {
-            var appRoot = Directory.GetCurrentDirectory();
-
-            if (Path.GetFileName(appRoot) == "server") {
-                appRoot = Path.GetDirectoryName(appRoot);
-            }
-
+            var cwd = Directory.GetCurrentDirectory();
+            var web = Path.GetFileName(cwd) == "server" ? "../public" : "public";
             var host = new WebHostBuilder()
-                .UseContentRoot(appRoot)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseWebRoot(web)
                 .UseKestrel()
                 .UseIISIntegration()
                 .UseStartup<Startup>()

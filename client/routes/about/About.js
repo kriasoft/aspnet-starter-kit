@@ -8,11 +8,17 @@
  */
 
 import React from 'react';
-import { createApp } from 'react-app';
+import { Layout } from '../../components'
 
-import routes from './routes';
+function About() {
+  return (
+    <Layout>
+      <h1>About Us</h1>
+      <p>
+        Coming soon.
+      </p>
+    </Layout>
+  );
+}
 
-createApp({
-  routes,
-  container: document.getElementById('container'),
-});
+export default About;
