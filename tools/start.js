@@ -32,7 +32,10 @@ module.exports = task('start', () => Promise.resolve()
   .then(() => new Promise(resolve => {
     const options = {
       cwd: path.resolve(__dirname, '../server/'),
-      stdio: ['ignore', 'pipe', 'inherit']
+      stdio: ['ignore', 'pipe', 'inherit'],
+      env: {
+        'ASPNETCORE_ENVIRONMENT': 'Development',
+      }
     };
     cp.spawn('dotnet', ['run'], options).stdout.on('data', data => {
       process.stdout.write(data);

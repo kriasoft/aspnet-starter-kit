@@ -9,12 +9,12 @@
 
 import ErrorPage from './ErrorPage';
 
-const path = '/';
+const path = '/error';
 
 const action = () => {
   return {
     title: 'Page Not Found',
-    component: ErrorPage
+    component: ErrorPage,
   };
 };
 

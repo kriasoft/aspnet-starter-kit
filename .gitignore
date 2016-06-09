@@ -20,3 +20,6 @@ project.lock.json
 # SQL Server
 *.mdf
 *.ldf
+
+# Sensitive data
+appsettings.*.json

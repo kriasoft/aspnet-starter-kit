@@ -7,9 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
 import { createApp } from 'react-app';
-
 import routes from './routes';
 
 createApp({

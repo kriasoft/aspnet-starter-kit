@@ -12,7 +12,7 @@ const cp = require('./lib/cp');
 const task = require('./lib/task');
 
 const isDebug = !(process.argv.includes('--production') || process.argv.includes('-p'));
-const config = isDebug ? 'Development' : 'Production';
+const config = isDebug ? 'Debug' : 'Release';
 
 module.exports = task('build', () => Promise.resolve()
   .then(() => require('./clean'))

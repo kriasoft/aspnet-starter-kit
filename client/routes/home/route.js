@@ -14,7 +14,7 @@ const path = '/';
 const action = () => {
   return {
     title: 'Home Page',
-    component: Home
+    component: Home,
   };
 };
 

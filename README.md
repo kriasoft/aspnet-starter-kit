@@ -60,14 +60,14 @@ $ cd MyApp
 ```
 
 `2`. Install project dependencies listed in [`project.json`](./server/project.json) and
-[`package.json`](./package.json) files by running: 
+[`package.json`](./package.json) files: 
 
 ```shell
 $ dotnet restore                # Installs .NET dependencies listed in project.json
 $ npm install                   # Installs Node.js dependencies listed in package.json
 ```
 
-`3`. Finally, launch the web app by running:
+`3`. Finally, launch the web app:
 
 ```shell
 $ npm start                     # Compiles and lanches the app

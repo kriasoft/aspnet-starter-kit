@@ -3,62 +3,87 @@
 // LICENSE.txt file in the root directory of this source tree.
 
 using System.IO;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Server.Models;
 
-namespace server
+namespace Server
 {
     public class Startup
     {
+        // Load application settings from JSON file(s)
+        // https://docs.asp.net/en/latest/fundamentals/configuration.html
+        public Startup(IHostingEnvironment env)
+        {
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile($"appsettings.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .Build();
+        }
+
+        public IConfiguration Configuration { get; set; }
+
+        // Configure IoC container
+        // https://docs.asp.net/en/latest/fundamentals/dependency-injection.html
         public void ConfigureServices(IServiceCollection services)
         {
+            // https://docs.asp.net/en/latest/security/anti-request-forgery.html
+            services.AddAntiforgery(options => options.CookieName =  options.HeaderName = "X-XSRF-TOKEN");
+
+            // Register Entity Framework database context
+            // https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DatabaseContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddViews()
+                .AddRazorViewEngine()
+                .AddJsonFormatters();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
-            factory.AddConsole(LogLevel.Trace);
+            // Configure logging
+            // https://docs.asp.net/en/latest/fundamentals/logging.html
+            factory.AddConsole(Configuration.GetSection("Logging"));
+            factory.AddDebug();
 
+            // Serve static files
+            // https://docs.asp.net/en/latest/fundamentals/static-files.html
             app.UseStaticFiles();
 
-            dynamic assets;
+            // Enable external authentication provider(s)
+            // https://docs.asp.net/en/latest/security/authentication/sociallogins.html
+            app.UseIdentity()
 
-            using (var stream = File.OpenRead(Path.Combine(env.WebRootPath, "./assets/assets.json")))
-            using (var reader = new StreamReader(stream))
-            {
-                assets = JsonConvert.DeserializeObject(reader.ReadToEnd());
-            }
+                .UseFacebookAuthentication(new FacebookOptions
+                {
+                    AppId = Configuration["Authentication:Facebook:AppId"],
+                    AppSecret = Configuration["Authentication:Facebook:AppSecret"],
+                    Scope = { "email" },
+                    Fields = { "name", "email" },
+                    SaveTokens = true,
+                });
 
-            app.Run(async (context) =>
+            // Configure ASP.NET MVC
+            // https://docs.asp.net/en/latest/mvc/index.html
+            app.UseMvc(routes =>
             {
-                context.Response.ContentType = "text/html";
-                await context.Response.WriteAsync($@"<!doctype html>
-<html lang="""">
-  <head>
-    <meta charset=""utf-8"">
-    <meta http-equiv=""x-ua-compatible"" content=""ie=edge"">
-    <title>F# Starter Kit</title>
-    <meta name=""description"" content="""">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
-    <link rel=""stylesheet"" href=""https://fonts.googleapis.com/icon?family=Material+Icons"">
-    <link rel=""stylesheet"" href=""https://cdn.rawgit.com/tleunen/react-mdl/master/extra/material.min.css"">
-    <link rel=""stylesheet"" href=""https://cdn.rawgit.com/isagalaev/highlight.js/master/src/styles/default.css"">
-    <link rel=""apple-touch-icon"" href=""apple-touch-icon.png"">
-  </head>
-  <body>
-    <div id=""container""></div>
-    <script src=""https://cdn.rawgit.com/tleunen/react-mdl/master/extra/material.min.js""></script>
-    <script src=""{assets.main.js}""></script>
-    <script>
-      window.ga=function(){{ga.q.push(arguments)}};ga.q=[];ga.l=+new Date;
-      ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-    </script>
-    <script src=""https://www.google-analytics.com/analytics.js"" async defer></script>
-  </body>
-</html>");
+                routes.MapRoute("default", "{*url}", new { controller = "Home", action = "Index" });
             });
         }
 
@@ -66,6 +91,7 @@ namespace server
         {
             var cwd = Directory.GetCurrentDirectory();
             var web = Path.GetFileName(cwd) == "server" ? "../public" : "public";
+
             var host = new WebHostBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseWebRoot(web)
