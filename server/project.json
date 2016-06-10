@@ -56,8 +56,8 @@
       "Views"
     ],
     "includeFiles": [
-      "config.json",
-      "config.Production.json",
+      "appsettings.json",
+      "appsettings.Production.json",
       "web.config"
     ]
   }

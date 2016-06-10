@@ -10,7 +10,7 @@
 import React from 'react';
 import { Layout } from '../../components'
 
-const link = "https://github.com/kriasoft/aspnet-react-starter-kit";
+const link = "https://github.com/kriasoft/aspnet-starter-kit";
 
 function Home() {
   return (
