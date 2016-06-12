@@ -11,11 +11,9 @@ import Home from './Home';
 
 const path = '/';
 
-const action = () => {
-  return {
-    title: 'Home Page',
-    component: Home,
-  };
-};
+const action = () => ({
+  title: 'Home Page',
+  component: Home,
+});
 
 export default { path, action };

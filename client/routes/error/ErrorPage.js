@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Layout } from '../../components'
+import { Layout } from '../../components';
 
 function ErrorPage() {
   return (

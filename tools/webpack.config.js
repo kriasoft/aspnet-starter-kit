@@ -9,7 +9,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const extend = require('extend');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const isDebug = !(process.argv.includes('--production') || process.argv.includes('-p'));
@@ -26,7 +25,7 @@ const config = {
 
   // The entry point for the bundle
   entry: [
-    './client/main.js'
+    './client/main.js',
   ],
 
   // Options affecting the output of the compilation
@@ -82,7 +81,7 @@ const config = {
         include: [
           path.resolve(__dirname, '../client'),
         ],
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.css/,
@@ -120,7 +119,7 @@ const config = {
 
   // The list of plugins for PostCSS
   // https://github.com/postcss/postcss
-  postcss(bundler) {
+  postcss() {
     return [
       // Transfer @import rule by inlining content, e.g. @import 'normalize.css'
       // https://github.com/postcss/postcss-import

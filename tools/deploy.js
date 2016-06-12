@@ -13,7 +13,7 @@ const task = require('./lib/task');
 
 const remote = {
   name: 'azure',
-  url: 'https://<user>@<app>.scm.azurewebsites.net:443/<app>.git'
+  url: 'https://<user>@<app>.scm.azurewebsites.net:443/<app>.git',
 };
 
 const opts = { cwd: path.resolve(__dirname, '../build') };

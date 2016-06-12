@@ -11,11 +11,9 @@ import ErrorPage from './ErrorPage';
 
 const path = '/error';
 
-const action = () => {
-  return {
-    title: 'Page Not Found',
-    component: ErrorPage,
-  };
-};
+const action = () => ({
+  title: 'Page Not Found',
+  component: ErrorPage,
+});
 
 export default { path, action };

@@ -34,8 +34,8 @@ module.exports = task('start', () => Promise.resolve()
       cwd: path.resolve(__dirname, '../server/'),
       stdio: ['ignore', 'pipe', 'inherit'],
       env: {
-        'ASPNETCORE_ENVIRONMENT': 'Development',
-      }
+        ASPNETCORE_ENVIRONMENT: 'Development',
+      },
     };
     cp.spawn('dotnet', ['run'], options).stdout.on('data', data => {
       process.stdout.write(data);

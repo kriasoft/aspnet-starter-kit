@@ -19,7 +19,7 @@ const routes = {
     homeRoute,
     aboutRoute,
     errorRoute,
-  ]
+  ],
 
 };
 

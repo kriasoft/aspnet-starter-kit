@@ -26,14 +26,16 @@ module.exports = task('build', () => Promise.resolve()
     delete appSettings.Logging;
     ['Production', 'Development'].forEach(env => {
       const filename = path.resolve(__dirname, `../server/appsettings.${env}.json`);
-      fs.writeFile(filename, JSON.stringify(appSettings, null, '  '), { flag: 'wx', }, err => {
+      fs.writeFile(filename, JSON.stringify(appSettings, null, '  '), { flag: 'wx' }, () => {
         if (--count === 0) resolve();
       });
-    })
+    });
   }))
 
   // Compile the ASP.NET Core app
-  .then(() => cp.spawn('dotnet', ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr']))
+  .then(() => cp.spawn(
+    'dotnet', ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr']
+  ))
 
   // Compile the JavaScript app
   .then(() => require('./bundle'))
