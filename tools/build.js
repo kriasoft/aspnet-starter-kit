@@ -20,17 +20,7 @@ module.exports = task('build', () => Promise.resolve()
   .then(() => require('./clean'))
 
   // Create Production/Development configuration files if they don't exist
-  .then(() => new Promise(resolve => {
-    let count = 2;
-    const appSettings = require('../server/appsettings.json'); // use it as a template
-    delete appSettings.Logging;
-    ['Production', 'Development'].forEach(env => {
-      const filename = path.resolve(__dirname, `../server/appsettings.${env}.json`);
-      fs.writeFile(filename, JSON.stringify(appSettings, null, '  '), { flag: 'wx' }, () => {
-        if (--count === 0) resolve();
-      });
-    });
-  }))
+  .then(() => require('./appsettings'))
 
   // Compile the ASP.NET Core app
   .then(() => cp.spawn(

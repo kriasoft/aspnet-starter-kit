@@ -2,6 +2,8 @@
 // This source code is licensed under the MIT license found in the
 // LICENSE.txt file in the root directory of this source tree.
 
+using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +17,16 @@ namespace Server.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger _logger;
+        private readonly SortedList<string, string> _providers;
 
         public AccountController(SignInManager<User> signInManager, ILoggerFactory loggerFactory)
         {
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _providers = new SortedList<string, string>
+            {
+                { "facebook", "Facebook" }
+            };
         }
 
         [HttpGet("login/{provider}")]
@@ -27,9 +34,10 @@ namespace Server.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
+            var providerName = _providers.ContainsKey(provider) ? _providers[provider] : provider;
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return Challenge(properties, provider);
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(providerName, redirectUrl);
+            return Challenge(properties, providerName);
         }
 
         [HttpGet("auth")]

@@ -68,9 +68,11 @@ namespace Server
 
             // Enable external authentication provider(s)
             // https://docs.asp.net/en/latest/security/authentication/sociallogins.html
-            app.UseIdentity()
+            app.UseIdentity();
 
-                .UseFacebookAuthentication(new FacebookOptions
+            if (!string.IsNullOrEmpty(Configuration["Authentication:Facebook:AppId"]))
+            {
+                app.UseFacebookAuthentication(new FacebookOptions
                 {
                     AppId = Configuration["Authentication:Facebook:AppId"],
                     AppSecret = Configuration["Authentication:Facebook:AppSecret"],
@@ -78,6 +80,7 @@ namespace Server
                     Fields = { "name", "email" },
                     SaveTokens = true,
                 });
+            }
 
             // Configure ASP.NET MVC
             // https://docs.asp.net/en/latest/mvc/index.html

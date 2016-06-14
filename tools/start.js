@@ -14,6 +14,11 @@ const webpackConfig = require('./webpack.config');
 const task = require('./lib/task');
 
 module.exports = task('start', () => Promise.resolve()
+  // Clean up the output directory
+  .then(() => require('./clean'))
+
+  // Create Production/Development configuration files if they don't exist
+  .then(() => require('./appsettings'))
 
   // Launch Webpack compiler in watch mode
   .then(() => new Promise((resolve, reject) => {
@@ -44,5 +49,4 @@ module.exports = task('start', () => Promise.resolve()
       }
     });
   }))
-
 );
