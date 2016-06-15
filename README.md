@@ -115,34 +115,42 @@ Alternatively, you can pull the updates into a separate folder and and compare t
 project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
 
 
-### References
+### Learn More
 
-<table width="100%">
-  <tr>
-    <td width="185">
-      <a href="http://amzn.to/25J77RT">
-        <img src="http://ecx.images-amazon.com/images/I/51PoyFDMopL._SX150.jpg" width="150" height="185" alt="C# 6 and .NET Core 1.0: Modern Cross-Platform Development" />
-      </a>
-    </td>
-    <td>
-      <p>
-        <strong><a href="http://amzn.to/25J77RT">C# 6 and .NET Core 1.0: Modern Cross-Platform Development</a></strong><br />
-        <sup>by Mark J. Price (Mar 2016)</sup>
-      </p>
-      <p>In this book you will learn:</p>
-      <ul>
-        <li>Build cross-platform applications using C# 6 and .NET Core 1.0</li>
-        <li>Explore ASP.NET Core 1.0 and learn how to create professional web applications</li>
-        <li>Improve your application's performance using multitasking</li>
-        <li>Use Entity Framework Core 1.0 and learn how to build Code-First databases</li>
-        <li>Master object-oriented programming with C# to increase code reuse and efficiency</li>
-        <li>Familiarize yourself with cross-device app development using the Universal Windows Platform and XAML</li>
-        <li>Query and manipulate data using LINQ</li>
-        <li>Protect your data by using encryption and hashing</li>
-      </p>
-    </td>
-  </tr>
-</table>
+
+* **General**
+  * [.NET Core Documentation](https://dotnet.github.io/docs/) (core concepts: CoreFX, CoreCLR, Roslyn, .NET CLI tools etc.)
+  * [ASP.NET Core Documentation](https://docs.asp.net/en/latest/) (MVC, Razor, Routing, SignalR, Identity, Localization, Caching etc.)
+  * [Entity Framework Core Documenation](https://docs.efproject.net/en/latest/) (providers, models, migrations, EF CLI tools etc.)
+* **Security**
+  * [How to Set Up ASP.NET Core DataProtection in a Web Farm](http://www.paraesthesia.com/archive/2016/06/15/set-up-asp-net-dataprotection-in-a-farm/) by [Travis Illig](http://www.paraesthesia.com/)
+* **Books**
+  <table width="100%">
+    <tr>
+      <td width="185">
+        <a href="http://amzn.to/25J77RT">
+          <img src="http://ecx.images-amazon.com/images/I/51PoyFDMopL._SX150.jpg" width="150" height="185" alt="C# 6 and .NET Core 1.0: Modern Cross-Platform Development" />
+        </a>
+      </td>
+      <td>
+        <p>
+          <strong><a href="http://amzn.to/25J77RT">C# 6 and .NET Core 1.0: Modern Cross-Platform Development</a></strong><br />
+          <sup>by Mark J. Price (Mar 2016)</sup>
+        </p>
+        <p>In this book you will learn:</p>
+        <ul>
+          <li>Build cross-platform applications using C# 6 and .NET Core 1.0</li>
+          <li>Explore ASP.NET Core 1.0 and learn how to create professional web applications</li>
+          <li>Improve your application's performance using multitasking</li>
+          <li>Use Entity Framework Core 1.0 and learn how to build Code-First databases</li>
+          <li>Master object-oriented programming with C# to increase code reuse and efficiency</li>
+          <li>Familiarize yourself with cross-device app development using the Universal Windows Platform and XAML</li>
+          <li>Query and manipulate data using LINQ</li>
+          <li>Protect your data by using encryption and hashing</li>
+        </p>
+      </td>
+    </tr>
+  </table>
 
 
 ### Related Projects
