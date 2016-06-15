@@ -7,6 +7,9 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "node_modules"
+    "build",
+    "node_modules",
+    "temp",
+    "tmp"
   ]
 }
