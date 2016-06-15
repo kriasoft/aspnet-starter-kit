@@ -86,7 +86,7 @@
     }
   },
   "scripts": {
-    "postinstall": "dotnet restore",
+    "postinstall": "dotnet restore server server.test",
     "eslint": "eslint client client.test tools",
     "stylelint": "stylelint \"client/components/**/*.css\" \"client/routes/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
