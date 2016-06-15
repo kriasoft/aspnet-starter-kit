@@ -63,18 +63,25 @@ $ git clone -o aspnet-starter-kit -b master --single-branch \
 $ cd MyApp
 ```
 
+Alternatively, scaffold your project with [Yeoman](http://yeoman.io/):
+
+```shell
+$ npm install -g yo
+$ npm install -g generator-aspnetcore
+$ yo aspnetcore
+```
+
 `2`. Install project dependencies listed in [`project.json`](./server/project.json) and
 [`package.json`](./package.json) files: 
 
 ```shell
-$ dotnet restore                # Installs .NET dependencies listed in project.json
-$ npm install                   # Installs Node.js dependencies listed in package.json
+$ npm install                   # Install both Node.js and .NET Core dependencies
 ```
 
 `3`. Finally, launch the web app:
 
 ```shell
-$ npm start                     # Compiles and lanches the app
+$ npm start                     # Compile and lanch the app
 ```
 
 The app should become available at [http://localhost:5000/](http://localhost:5000/)
@@ -91,6 +98,21 @@ app into a distributable format and upload that to Windows Azure App Service, si
 ```shell
 $ npm run deploy                # Same as running: node tools/deploy --production
 ```
+
+### How to Update
+
+We work hard on keeping the project up to date and adding new features. After starting a new web
+application project based on this boilerplate, you can alwasy fetch and merge the latest changes
+from this (upstream) repo back into your project by running:
+
+```shell
+$ git checkout master
+$ git fetch aspnet-starter-kit
+$ git merge aspnet-starter-kit/master 
+```
+
+Alternatively, you can pull the updates into a separate folder and and compare that folder with your
+project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
 
 
 ### References
