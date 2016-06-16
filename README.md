@@ -130,10 +130,12 @@ requests](CONTRIBUTING.md#pull-requests).
 
 * **General**
   * [.NET Core Documentation](https://dotnet.github.io/docs/) (core concepts: CoreFX, CoreCLR, Roslyn, .NET CLI tools etc.)
-  * [ASP.NET Core Documentation](https://docs.asp.net/en/latest/) (MVC, Razor, Routing, SignalR, Identity, Localization, Caching etc.)
+  * [ASP.NET Core Documentation](https://docs.asp.net/en/latest/) (MVC, Razor, SignalR, Identity, routing, localization, caching etc.)
   * [Entity Framework Core Documenation](https://docs.efproject.net/en/latest/) (providers, models, migrations, EF CLI tools etc.)
+* **HTTP Server**
+  * [Running ASP.NET Core applications with IIS and Antares (Azure Web Apps)](https://blog.3d-logic.com/2016/06/08/running-asp-net-core-applications-with-iis-and-antares/) by [Pawel Kadluczka](https://blog.3d-logic.com)
 * **Security**
-  * [How to Set Up ASP.NET Core DataProtection in a Web Farm](http://www.paraesthesia.com/archive/2016/06/15/set-up-asp-net-dataprotection-in-a-farm/) by [Travis Illig](http://www.paraesthesia.com/)
+  * [How to set up ASP.NET Core DataProtection in a Web Farm](http://www.paraesthesia.com/archive/2016/06/15/set-up-asp-net-dataprotection-in-a-farm/) by [Travis Illig](http://www.paraesthesia.com/)
 * **Books**
   <table width="100%">
     <tr>
