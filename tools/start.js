@@ -42,7 +42,7 @@ module.exports = task('start', () => Promise.resolve()
         ASPNETCORE_ENVIRONMENT: 'Development',
       },
     };
-    cp.spawn('dotnet', ['run'], options).stdout.on('data', data => {
+    cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
       process.stdout.write(data);
       if (data.indexOf('Application started.') !== -1) {
         resolve();
