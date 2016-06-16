@@ -101,9 +101,9 @@ $ npm run deploy                # Same as running: node tools/deploy --productio
 
 ### How to Update
 
-We work hard on keeping the project up to date and adding new features. After starting a new web
-application project based on this boilerplate, you can alwasy fetch and merge the latest changes
-from this (upstream) repo back into your project by running:
+We work hard on keeping the project up-to-date and adding new features. Down the road, after
+starting a new web application project based on this boilerplate, you can always fetch and merge
+the latest changes from this (upstream) repo back into your project by running:
 
 ```shell
 $ git checkout master
@@ -111,8 +111,18 @@ $ git fetch aspnet-starter-kit
 $ git merge aspnet-starter-kit/master 
 ```
 
-Alternatively, you can pull the updates into a separate folder and and compare that folder with your
-project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
+Alternatively, pull the latest version of this repository into a separate folder and and compare
+it with your project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
+
+
+### How to Contribute
+
+Anyone and everyone is welcome to [contribute](CONTRIBUTING.md) to this project. The best way to
+start is by checking our [open issues](https://github.com/kriasoft/aspnet-starter-kit/issues),
+[submit a new issues](https://github.com/kriasoft/aspnet-starter-kit/issues/new?labels=bug) or
+[feature request](https://github.com/kriasoft/aspnet-starter-kit/issues/new?labels=enhancement),
+participate in discussions, upvote or downvote the issues you like or dislike, send [pull
+requests](CONTRIBUTING.md#pull-requests).
 
 
 ### Learn More
