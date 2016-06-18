@@ -8,7 +8,10 @@
  */
 
 import React from 'react';
+import { Link } from 'react-app';
 import Navigation from './Navigation';
+import Logo from './Logo';
+import s from './Header.css';
 
 class Header extends React.Component {
 
@@ -22,9 +25,11 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="mdl-layout__header" ref="root">
-        <div className="mdl-layout__header-row">
-          <span className="mdl-layout-title">ASP.NET Core Starter Kit</span>
+      <header className="mdl-layout__header mdl-layout__header--transparent" ref="root">
+        <div className={`mdl-layout__header-row ${s.headerRow}`}>
+          <Link className="mdl-layout-title" to="/">
+            <Logo height={48} />
+          </Link>
           <div className="mdl-layout-spacer"></div>
           <Navigation />
         </div>

@@ -111,8 +111,8 @@ $ git fetch aspnet-starter-kit
 $ git merge aspnet-starter-kit/master 
 ```
 
-Alternatively, pull the latest version of this repository into a separate folder and and compare
-it with your project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
+Alternatively, pull the latest version of this repository into a separate folder and compare it with
+your project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
 
 
 ### How to Contribute

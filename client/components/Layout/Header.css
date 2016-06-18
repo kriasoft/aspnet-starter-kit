@@ -7,5 +7,6 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-export Button from './Button/Button';
-export Layout from './Layout/Layout';
+.headerRow {
+  padding-left: 40px;
+}

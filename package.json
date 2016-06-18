@@ -6,9 +6,10 @@
     "npm": ">=3.8"
   },
   "dependencies": {
-    "react": "^15.1.0",
+    "classnames": "2.2.5",
+    "react": "15.1.0",
     "react-app": "1.0.0-alpha.3",
-    "react-dom": "^15.1.0"
+    "react-dom": "15.1.0"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",

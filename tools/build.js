@@ -7,8 +7,6 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-const fs = require('fs');
-const path = require('path');
 const cp = require('./lib/cp');
 const task = require('./lib/task');
 

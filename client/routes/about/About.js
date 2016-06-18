@@ -13,8 +13,8 @@ import { Layout } from '../../components';
 function About() {
   return (
     <Layout>
-      <h1>About Us</h1>
-      <p>
+      <h1 className="mdl-typography--title">About Us</h1>
+      <p className="mdl-typography--body-1">
         Coming soon.
       </p>
     </Layout>

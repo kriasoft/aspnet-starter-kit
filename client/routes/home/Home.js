@@ -15,8 +15,8 @@ const link = 'https://github.com/kriasoft/aspnet-starter-kit';
 function Home() {
   return (
     <Layout>
-      <h1>Welcome to ASP.NET Core Starter Kit!</h1>
-      <p>
+      <h1 className="mdl-typography--title">Welcome to ASP.NET Core Starter Kit!</h1>
+      <p className="mdl-typography--body-1">
         For more information visit <a href={link}>{link}</a>
       </p>
     </Layout>

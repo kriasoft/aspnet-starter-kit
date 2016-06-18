@@ -13,8 +13,8 @@ import { Layout } from '../../components';
 function ErrorPage() {
   return (
     <Layout>
-      <h1>Page Not Found</h1>
-      <p>
+      <h1 className="mdl-typography--title">Page Not Found</h1>
+      <p className="mdl-typography--body-1">
         Sorry, this page does not exist.
       </p>
     </Layout>

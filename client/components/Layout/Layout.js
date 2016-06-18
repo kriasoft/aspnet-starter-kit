@@ -25,7 +25,15 @@ class Layout extends React.Component {
     return (
       <div className="mdl-layout mdl-js-layout" ref="root">
         <div className="mdl-layout__inner-container">
-          <Header />
+          <div className={s.ribbon}>
+            <Header />
+            <div className={s.container}>
+              <h1 className={`mdl-typography--title ${s.tagline}`}>ASP.NET Core Starter Kit</h1>
+              <p className={`mdl-typography--body-1 ${s.summary}`}>
+                Single-page application boilerplate powered by .NET Core and React
+              </p>
+            </div>
+          </div>
           <main {...this.props} className={s.content} />
         </div>
       </div>
