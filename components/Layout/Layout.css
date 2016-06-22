@@ -1,0 +1,72 @@
+/**
+ * ASP.NET Core Starter Kit
+ *
+ * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.ribbon {
+  width: 100%;
+  height: 40vh;
+  background-color: #3f51b5;
+  background-image: linear-gradient(-225deg, #3db0ef, #5e5bb7);
+  flex-shrink: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tagline,
+.summary {
+  color: #fff;
+}
+
+.tagline {
+  font-size: 3em;
+  margin-top: 6vh;
+  font-weight: 100;
+  text-align: center;
+}
+
+.taglineStrong {
+  font-weight: 300;
+}
+
+.summary {
+  font-size: 2em;
+  line-height: 1.5em;
+  text-align: center;
+  font-weight: 100;
+  max-width: 800px;
+  padding-left: 100px;
+  padding-right: 100px;
+  color: rgba(255, 255, 255, .8);
+}
+
+.summary strong {
+  font-weight: 300;
+}
+
+.leftButton,
+.rightButton {
+  margin: 1em .5em;
+}
+
+.leftButton {
+  background-color: #fff;
+}
+
+.rightButton {
+  background-color: rgba(255, 255, 255, .5);
+}
