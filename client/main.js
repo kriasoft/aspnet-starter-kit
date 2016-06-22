@@ -22,6 +22,8 @@ import routes from '!!./utils/routes-loader!./routes.json';
 const context = { history, store };
 const container = document.getElementById('container');
 
+// The top-level React component the goal of which is to provide
+// context variables such as Redux store to all the child components
 class App extends React.Component {
   static childContextTypes = {
     history: PropTypes.object.isRequired,
