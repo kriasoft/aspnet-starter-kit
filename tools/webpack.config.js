@@ -32,7 +32,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, '../'),
     publicPath: '/',
-    filename: isDebug ? 'main.min.js?[chunkhash]' : 'main.[chunkhash].js',
+    filename: isDebug ? 'main.bundle.js?[chunkhash]' : 'main.[chunkhash].js',
     chunkFilename: isDebug ? 'main.[id].js?[chunkhash]' : 'main.[id].[chunkhash].js',
     sourcePrefix: '  ',
   },

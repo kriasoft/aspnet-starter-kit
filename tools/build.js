@@ -31,10 +31,11 @@ module.exports = task('start', () => Promise.resolve()
       });
     }))
 
-  .then(() => new Promise((resolve, reject) => {
+  .then(() => new Promise(resolve => {
     const assets = require('../assets.json');
     let html = fs.readFileSync('./index.html', 'utf8');
     html = html.replace(/"main\..+"/, `"${assets.main.js.substr(1)}"`);
     fs.writeFileSync('./index.html', html, 'utf8');
+    resolve();
   }))
 );
