@@ -10,7 +10,6 @@
     "classnames": "2.2.5",
     "history": "^3.0.0",
     "react": "15.1.0",
-    "react-app": "1.0.0-alpha.3",
     "react-dom": "15.1.0",
     "redux": "^3.5.2",
     "whatwg-fetch": "^1.0.0"
