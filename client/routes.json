@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/",
+    "view": "./views/home"
+  },
+  {
+    "path": "/error",
+    "view": "./views/error"
+  },
+  {
+    "path": "/about",
+    "view": "./views/about"
+  },
+  {
+    "path": "/tasks/:status(pending|completed)?",
+    "view": "./views/home"
+  }
+]

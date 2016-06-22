@@ -7,13 +7,9 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import Home from './Home';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import useQueries from 'history/lib/useQueries';
 
-const path = '/';
+const history = useQueries(createBrowserHistory)();
 
-const action = () => ({
-  title: 'Home Page',
-  component: Home,
-});
-
-export default { path, action };
+export default history;

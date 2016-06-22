@@ -4,8 +4,8 @@
 > boilerplate for web development based on [.NET Core](http://dotnet.github.io/),
 > [Kestrel](https://github.com/aspnet/KestrelHttpServer), [GraphQL](http://graphql.org/) on the
 > backend and [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
-> [React](https://facebook.github.io/react) on the frontend. This boilerplate comes in both
-> [C#](https://github.com/kriasoft/aspnet-starter-kit) and
+> [React](https://facebook.github.io/react) and [Redux](http://redux.js.org/) on the frontend.
+> This boilerplate comes in both [C#](https://github.com/kriasoft/aspnet-starter-kit) and
 > [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
 
 **The work is being sponsored by [Rollbar](https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)) and [Localize](https://localizejs.com/?cid=802&utm_source=rsk):**
@@ -13,12 +13,13 @@
 <a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
 <a href="https://localizejs.com/?cid=802&utm_source=rsk"><img src="https://koistya.github.io/files/localize-x64.png" alt="Localize" width="291" height="64"></a>
 
+
 ### Features
 
-&nbsp; &nbsp; ✓ Component-based front-end development with [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`tools/webpack.config.js`](./tools/webpack.config.js))<br>
+&nbsp; &nbsp; ✓ Component-based front-end development via [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`tools/webpack.config.js`](./tools/webpack.config.js))<br>
 &nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/); modern CSS syntax (CSS3+) via [PostCSS](https://github.com/postcss/postcss)<br>
-&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (coming soon)<br>
-&nbsp; &nbsp; ✓ Routing and navigation via [React App](https://github.com/kriasoft/react-app), [Universal Router](https://github.com/kriasoft/universal-router) and [History](https://github.com/mjackson/history) `npm` modules<br>
+&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/core/store.js`](./client/core/store.js))<br>
+&nbsp; &nbsp; ✓ Universal cross-stack routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/ReactJSTraining/history) (see [`client/routes.json`](./client/routes.json))<br>
 &nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading with [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
 &nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/) (coming soon)<br>
 &nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (coming soon)<br>
@@ -151,16 +152,13 @@ requests](CONTRIBUTING.md#pull-requests).
           <strong><a href="http://amzn.to/25J77RT">C# 6 and .NET Core 1.0: Modern Cross-Platform Development</a></strong><br />
           <sup>by Mark J. Price (Mar 2016)</sup>
         </p>
-        <p>In this book you will learn:</p>
-        <ul>
-          <li>Build cross-platform applications using C# 6 and .NET Core 1.0</li>
-          <li>Explore ASP.NET Core 1.0 and learn how to create professional web applications</li>
-          <li>Improve your application's performance using multitasking</li>
-          <li>Use Entity Framework Core 1.0 and learn how to build Code-First databases</li>
-          <li>Master object-oriented programming with C# to increase code reuse and efficiency</li>
-          <li>Familiarize yourself with cross-device app development using the Universal Windows Platform and XAML</li>
-          <li>Query and manipulate data using LINQ</li>
-          <li>Protect your data by using encryption and hashing</li>
+        <p>
+          In this book you will learn how to build cross-platform applications using C# 6 and .NET
+          Core 1.0; how to build professional web applications with ASP.NET Core 1.0; how to improve
+          your application's performance using multitasking; learn Entity Framework Core 1.0 and
+          Code-First development approach; master object-oriented programming with C#; familiarize
+          yourself with cross-device app development using the Universal Windows Platform and XAML;
+          query and manipulate data using LINQ; protect your data by using encryption and hashing.
         </p>
       </td>
     </tr>

@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-app';
+import Link from '../Link';
 
 class Navigation extends React.Component {
 
