@@ -8,14 +8,53 @@
  */
 
 const fs = require('fs');
+const del = require('del');
 const path = require('path');
 const cp = require('child_process');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
-const task = require('./lib/task');
 
-module.exports = task('start', () => Promise.resolve()
-  // Clean up the output directory
+const tasks = new Map();
+
+function run(name) {
+  const start = new Date();
+  console.log(`Starting '${name}'...`);
+  return Promise.resolve().then(() => tasks.get(name)()).then(() => {
+    const end = new Date();
+    const time = end.getTime() - start.getTime();
+    console.log(`Finished '${name}' after ${time}ms`);
+  }, err => console.error(err.stack));
+}
+
+// Clean up the output directory
+tasks.set('clean', () => del(['main.*.js', 'main.*.js.map'], { dot: true }));
+
+// Compile application bundle from source files
+tasks.set('build', () => Promise.resolve()
+  .then(() => run('clean'))
+  .then(() => new Promise((resolve, reject) => {
+    const compiler = webpack(webpackConfig);
+    compiler.run((err, stats) => {
+      if (err) {
+        reject(err);
+      } else {
+        console.log(stats.toString(webpackConfig.stats));
+        resolve();
+      }
+    });
+  }))
+  .then(() => new Promise(resolve => {
+    const assets = require('./assets.json');
+    let html = fs.readFileSync('./index.html', 'utf8');
+    html = html.replace(/"main\..+"/, `"${assets.main.js.substr(1)}"`);
+    fs.writeFileSync('./index.html', html, 'utf8');
+    resolve();
+  }))
+);
+
+// Compile application bundle and start watching for changes in source files
+tasks.set('start', () => Promise.resolve()
+// Clean up the output directory
   .then(() => require('./clean'))
 
   // Fix path to the application bundle in index.html
@@ -53,3 +92,6 @@ module.exports = task('start', () => Promise.resolve()
     });
   }))
 );
+
+// Execute the specified task. E.g.: node run build
+run(process.argv[2] || 'start');

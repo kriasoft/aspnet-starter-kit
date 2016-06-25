@@ -79,8 +79,8 @@
     }
   },
   "scripts": {
-    "clean": "node tools/clean",
-    "build": "node tools/build",
-    "start": "node tools/start --debug"
+    "clean": "node run clean",
+    "build": "node run build",
+    "start": "node run start --debug"
   }
 }

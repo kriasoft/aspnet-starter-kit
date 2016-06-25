@@ -14,14 +14,9 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const isDebug = process.argv.includes('--debug') || process.argv.includes('-d');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 
-/**
- * Webpack configuration (client/main.js => public/assets/main.js)
- * http://webpack.github.io/docs/configuration.html
- */
+// Webpack configuration (main.js => main.<hash>.js)
+// http://webpack.github.io/docs/configuration.html
 const config = {
-
-  // The base directory
-  context: path.resolve(__dirname, '../'),
 
   // The entry point for the bundle
   entry: [
@@ -30,7 +25,6 @@ const config = {
 
   // Options affecting the output of the compilation
   output: {
-    path: path.resolve(__dirname, '../'),
     publicPath: '/',
     filename: isDebug ? 'main.bundle.js?[chunkhash]' : 'main.[chunkhash].js',
     chunkFilename: isDebug ? 'main.[id].js?[chunkhash]' : 'main.[id].[chunkhash].js',
@@ -67,7 +61,6 @@ const config = {
     // Emit a JSON file with assets paths
     // https://github.com/sporto/assets-webpack-plugin#options
     new AssetsPlugin({
-      path: path.resolve(__dirname, '../'),
       filename: 'assets.json',
       prettyPrint: true,
     }),
@@ -79,8 +72,8 @@ const config = {
       {
         test: /\.jsx?$/,
         include: [
-          path.resolve(__dirname, '../components'),
-          path.resolve(__dirname, '../main.js'),
+          path.resolve(__dirname, './components'),
+          path.resolve(__dirname, './main.js'),
         ],
         loader: 'babel-loader',
       },
