@@ -7,8 +7,8 @@
 
   "dependencies": {
     "dotnet-test-xunit": "1.0.0-rc2-*",
-    "Microsoft.NETCore.App": { "version": "1.0.0-rc2-3002702", "type": "platform" },
-    "xunit": "2.1.0-rc2-*"
+    "Microsoft.NETCore.App": { "version": "1.0.0", "type": "platform" },
+    "xunit": "2.2.0-beta1-*"
   },
 
   "frameworks": {
