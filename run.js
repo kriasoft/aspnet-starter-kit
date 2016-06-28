@@ -109,10 +109,9 @@ tasks.set('publish', () => {
     name: 'azure',
     url: 'https://<user>@<app>.scm.azurewebsites.net:443/<app>.git', // TODO: Update deployment URL
   };
-  const { spawn } = require('child_process'); // eslint-disable-line global-require
   const opts = { cwd: path.resolve(__dirname, './build'), stdio: ['ignore', 'inherit', 'inherit'] };
   const git = (...args) => new Promise((resolve, reject) => {
-    spawn('git', args, opts).on('close', code => {
+    cp.spawn('git', args, opts).on('close', code => {
       if (code === 0) {
         resolve();
       } else {
