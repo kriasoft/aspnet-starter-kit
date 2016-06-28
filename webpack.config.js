@@ -1,7 +1,7 @@
 /**
- * ASP.NET Core Starter Kit
+ * ASP.NET Core Starter Kit (https://dotnetreact.com)
  *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -11,17 +11,12 @@ const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
-const isDebug = !(process.argv.includes('--production') || process.argv.includes('-p'));
+const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 
-/**
- * Webpack configuration (client/main.js => public/assets/main.js)
- * http://webpack.github.io/docs/configuration.html
- */
+// Webpack configuration (client/main.js => public/assets/main.<hash>.js)
+// http://webpack.github.io/docs/configuration.html
 const config = {
-
-  // The base directory
-  context: path.resolve(__dirname, '../'),
 
   // The entry point for the bundle
   entry: [
@@ -30,10 +25,10 @@ const config = {
 
   // Options affecting the output of the compilation
   output: {
-    path: path.resolve(__dirname, '../public/assets/'),
+    path: path.resolve(__dirname, './public/assets/'),
     publicPath: '/assets/',
     filename: isDebug ? '[name].js?[chunkhash]' : '[name].[chunkhash].js',
-    chunkFilename: isDebug ? '[name].[id].js?[chunkhash]' : '[name].[id].[chunkhash].js',
+    chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
     sourcePrefix: '  ',
   },
 
@@ -67,7 +62,7 @@ const config = {
     // Emit a JSON file with assets paths
     // https://github.com/sporto/assets-webpack-plugin#options
     new AssetsPlugin({
-      path: path.resolve(__dirname, '../public/assets'),
+      path: path.resolve(__dirname, './public/assets'),
       filename: 'assets.json',
       prettyPrint: true,
     }),
@@ -79,7 +74,7 @@ const config = {
       {
         test: /\.jsx?$/,
         include: [
-          path.resolve(__dirname, '../client'),
+          path.resolve(__dirname, './client'),
         ],
         loader: 'babel-loader',
       },
@@ -104,7 +99,7 @@ const config = {
       },
       {
         test: /\.md$/,
-        loader: path.resolve(__dirname, './lib/markdown-loader.js'),
+        loader: path.resolve(__dirname, './client/utils/markdown-loader.js'),
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,

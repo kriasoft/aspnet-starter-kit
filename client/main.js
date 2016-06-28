@@ -1,7 +1,7 @@
 /**
- * ASP.NET Core Starter Kit
+ * ASP.NET Core Starter Kit (https://dotnetreact.com)
  *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -12,9 +12,9 @@ import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import store from './core/store';
-import history from './core/history';
-import router from './core/router';
+import store from './store';
+import history from './history';
+import router from './router';
 /* eslint-disable import/no-unresolved */
 import routes from '!!./utils/routes-loader!./routes.json';
 /* eslint-enable import/no-unresolved */

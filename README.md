@@ -16,14 +16,15 @@
 
 ### Features
 
-&nbsp; &nbsp; ✓ Component-based front-end development via [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`tools/webpack.config.js`](./tools/webpack.config.js))<br>
+&nbsp; &nbsp; ✓ Component-based front-end development via [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`tools/webpack.config.js`](webpack.config.js))<br>
 &nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/); modern CSS syntax (CSS3+) via [PostCSS](https://github.com/postcss/postcss)<br>
-&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/core/store.js`](./client/core/store.js))<br>
-&nbsp; &nbsp; ✓ Universal cross-stack routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/ReactJSTraining/history) (see [`client/routes.json`](./client/routes.json))<br>
+&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/core/store.js`](client/core/store.js))<br>
+&nbsp; &nbsp; ✓ Universal cross-stack routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/ReactJSTraining/history) (see [`client/routes.json`](client/routes.json))<br>
 &nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading with [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
 &nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/) (coming soon)<br>
+&nbsp; &nbsp; ✓ Lightweight build automation with plain JavaScript (see [`run.js`](run.js))<br>
 &nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (coming soon)<br>
-&nbsp; &nbsp; ✓ Git-based deployment to [Azure App Service](https://azure.microsoft.com/services/app-service/) (see [`tools/deploy.js`](./tools/deploy.js))<br>
+&nbsp; &nbsp; ✓ Git-based deployment to [Azure App Service](https://azure.microsoft.com/services/app-service/) (see [`run.js/publish`](run.js))<br>
 &nbsp; &nbsp; ✓ 24/7 community support on [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-starter-kit); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
 
 
@@ -34,15 +35,29 @@
 ├── /.vscode/                   # Visual Studio Code settings
 ├── /build/                     # The folder for compiled output
 ├── /client/                    # Client-side app (frontend)
+│   ├── /components/            # Common or shared UI components
+│   ├── /core/                  # Core framework files such as router, store etc.
+│   ├── /utils/                 # Helper functions and utility classes
+│   ├── /views/                 # UI components for web pages (screens)
+│   ├── history.js              # HTML5 History API wrapper used for navigation
+│   ├── main.js                 # Entry point that bootstraps the app
+│   ├── router.js               # Lightweight application router
+│   ├── routes.json             # The list of application routes
+│   └── store.js                # Application state manager (Redux)
 ├── /client.test/               # Unit and integration tests for the frontend app
 ├── /public/                    # Static files such as favicon.ico etc.
 ├── /server/                    # Web server and data API (backend)
+│   ├── /Controllers/           # ASP.NET Web API and MVC controllers
+│   ├── /Models/                # Entity Framework models (entities)
+│   ├── /Views/                 # Server-side rendered views
+│   ├── appsettings.json        # Server-side application settings
+│   ├── Startup.cs              # Server-side application entry point
+│   └── web.config              # Web server settings for IIS
 ├── /server.test/               # Unit and integration tests for the backend app
-├── /tools/                     # Build automation scripts and utilities
 │── jsconfig.json               # Visual Studio Code settings for JavaScript
-│── LICENSE.txt                 # Licensing information
 │── package.json                # The list of project dependencies and NPM scripts
-└── README.md                   # Project overview / getting started guide
+│── run.js                      # Build automation script (similar to gulpfile.js)
+└── webpack.config.js           # Bundling and optimization settings for Webpack
 ```
 
 
@@ -50,7 +65,7 @@
 
 * OS X, Windows or Linux
 * [Node.js](https://nodejs.org) v6 or newer
-* [.NET Core v1.0 RC2](https://blogs.msdn.microsoft.com/dotnet/2016/05/16/announcing-net-core-rc2/)
+* [.NET Core SDK](https://www.microsoft.com/net/core)
 * [Visual Studio Code](https://code.visualstudio.com/) with [C# extension](https://github.com/OmniSharp/omnisharp-vscode)
 
 
@@ -72,8 +87,8 @@ $ npm install -g generator-aspnetcore
 $ yo aspnetcore
 ```
 
-`2`. Install project dependencies listed in [`project.json`](./server/project.json) and
-[`package.json`](./package.json) files: 
+`2`. Install project dependencies listed in [`project.json`](server/project.json) and
+[`package.json`](package.json) files: 
 
 ```shell
 $ npm install                   # Install both Node.js and .NET Core dependencies
@@ -82,10 +97,11 @@ $ npm install                   # Install both Node.js and .NET Core dependencie
 `3`. Finally, launch the web app:
 
 ```shell
-$ npm start                     # Compile and lanch the app
+$ npm start                     # Compile and lanch the app, same as running: node run
 ```
 
-The app should become available at [http://localhost:5000/](http://localhost:5000/)
+The app should become available at [http://localhost:5000/](http://localhost:5000/).
+See [`run.js`](run.js) for other available commands such as `npm run build`, `npm run publish` etc.
 
 
 ### How to Deploy
@@ -93,11 +109,11 @@ The app should become available at [http://localhost:5000/](http://localhost:500
 Before you can deploy your app to [Azure App Service](https://azure.microsoft.com/services/app-service/),
 you need to open Web App settings in [Azure Portal](https://portal.azure.com/), go to "Deployment
 Source", select "Local Git Repository" and hit [OK]. Then copy and paste "Git clone URL" of your
-Web App into [`tools/deploy.js`](./tools/deploy.js) file. Then, whenever you need to compile your
+Web App into [`run.js/publish`](run.js) file. Finally, whenever you need to compile your
 app into a distributable format and upload that to Windows Azure App Service, simply run:
 
 ```shell
-$ npm run deploy                # Same as running: node tools/deploy --production
+$ npm run publish                # Same as running: node run publish --release
 ```
 
 ### How to Update

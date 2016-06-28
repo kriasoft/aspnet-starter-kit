@@ -19,12 +19,12 @@
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
-    "babel-eslint": "^6.0.5",
+    "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-webpack": "^6.4.1",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "babel-runtime": "^6.9.2",
@@ -42,7 +42,7 @@
     "front-matter": "^2.1.0",
     "highlight.js": "^9.4.0",
     "json-loader": "^0.5.4",
-    "markdown-it": "^6.1.1",
+    "markdown-it": "^7.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.5.3",
     "path-to-regexp": "^1.5.3",
@@ -62,12 +62,12 @@
     "postcss-selector-not": "^2.0.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "style-loader": "^0.13.1",
-    "stylelint": "^6.7.0",
+    "stylelint": "^6.7.1",
     "stylelint-config-standard": "^9.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.13",
+    "webpack": "^2.1.0-beta.14",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.11.0"
   },
   "babel": {
     "presets": [
@@ -96,9 +96,9 @@
     "lint": "npm run eslint && npm run stylelint",
     "test": "mocha \"client.test\" --compilers js:babel-register",
     "test:watch": "mocha \"client.test\" --compilers js:babel-register --reporter min --watch",
-    "clean": "node tools/clean",
-    "build": "node tools/build --production",
-    "deploy": "node tools/deploy --production",
-    "start": "node tools/start"
+    "clean": "node run clean",
+    "build": "node run build --release",
+    "publish": "node run publish --release",
+    "start": "node run start"
   }
 }
