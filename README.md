@@ -36,7 +36,6 @@
 ├── /build/                     # The folder for compiled output
 ├── /client/                    # Client-side app (frontend)
 │   ├── /components/            # Common or shared UI components
-│   ├── /core/                  # Core framework files such as router, store etc.
 │   ├── /utils/                 # Helper functions and utility classes
 │   ├── /views/                 # UI components for web pages (screens)
 │   ├── history.js              # HTML5 History API wrapper used for navigation
