@@ -91,7 +91,7 @@
   },
   "scripts": {
     "postinstall": "dotnet restore server server.test",
-    "eslint": "eslint client client.test tools",
+    "eslint": "eslint client client.test run.js webpack.config.js",
     "stylelint": "stylelint \"client/components/**/*.css\" \"client/routes/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
     "test": "mocha \"client.test\" --compilers js:babel-register",

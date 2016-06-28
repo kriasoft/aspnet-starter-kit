@@ -7,6 +7,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+/* eslint-disable global-require */
+
 const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
@@ -17,6 +19,9 @@ const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-
 // Webpack configuration (client/main.js => public/assets/main.<hash>.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
+
+  // The base directory for resolving the entry option
+  context: __dirname,
 
   // The entry point for the bundle
   entry: [

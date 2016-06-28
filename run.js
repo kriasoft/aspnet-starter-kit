@@ -65,13 +65,13 @@ tasks.set('copy', () => cpy(['public/**/*.*'], 'build', { parents: true }));
 tasks.set('appsettings', () => new Promise(resolve => {
   const environments = ['Production', 'Development'];
   let count = environments.length;
-  const appSettings = require('./server/appsettings.json'); // use it as a template
-  delete appSettings.Logging;
+  const source = require('./server/appsettings.json'); // eslint-disable-line global-require
+  delete source.Logging;
   environments.forEach(env => {
     const filename = path.resolve(__dirname, `./server/appsettings.${env}.json`);
     try {
-      fs.writeFileSync(filename, JSON.stringify(appSettings, null, '  '), { flag: 'wx' });
-    } catch(err) {}
+      fs.writeFileSync(filename, JSON.stringify(source, null, '  '), { flag: 'wx' });
+    } catch (err) {} // eslint-disable-line no-empty
     if (--count === 0) resolve();
   });
 }));
@@ -80,25 +80,24 @@ tasks.set('appsettings', () => new Promise(resolve => {
 //
 // Copy static files into the output folder
 // -----------------------------------------------------------------------------
-tasks.set('build', () => {
-  return Promise.resolve()
-    .then(() => run('clean'))
-    .then(() => run('bundle'))
-    .then(() => run('copy'))
-    .then(() => run('appsettings'))
-    .then(() => new Promise((resolve, reject) => {
-      const options = { stdio: ['ignore', 'inherit', 'inherit'] };
-      const config = isDebug ? 'Debug' : 'Release';
-      const args = ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr'];
-      cp.spawn('dotnet', args, options).on('close', code => {
-        if (code === 0) {
-          resolve();
-        } else {
-          reject(new Error(`dotnet ${args.join(' ')} => ${code} (error)`));
-        }
-      })
-    }));
-});
+tasks.set('build', () => Promise.resolve()
+  .then(() => run('clean'))
+  .then(() => run('bundle'))
+  .then(() => run('copy'))
+  .then(() => run('appsettings'))
+  .then(() => new Promise((resolve, reject) => {
+    const options = { stdio: ['ignore', 'inherit', 'inherit'] };
+    const config = isDebug ? 'Debug' : 'Release';
+    const args = ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr'];
+    cp.spawn('dotnet', args, options).on('close', code => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`dotnet ${args.join(' ')} => ${code} (error)`));
+      }
+    });
+  }))
+);
 
 
 //
@@ -139,7 +138,7 @@ tasks.set('publish', () => {
     .then(() => git('add', '.', '--all'))
     .then(() => git('commit', '--message', new Date().toUTCString())
       .catch(() => Promise.resolve()))
-    .then(() => git('push', 'origin', `master`, '--force', '--set-upstream'));
+    .then(() => git('push', 'origin', 'master', '--force', '--set-upstream'));
 });
 
 //
