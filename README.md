@@ -1,12 +1,14 @@
 # ASP.NET Core Starter Kit &nbsp; ![Status](https://img.shields.io/badge/status-early%20preview-orange.svg?style=flat-square) [![Online Chat](http://img.shields.io/badge/chat-%23aspnet--starter--kit-blue.svg?style=flat-square)](https://gitter.im/kriasoft/aspnet-starter-kit) [![Tips](https://img.shields.io/badge/donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSV6K6LZU2VGW)
 
-> [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) is an opinionated
-> boilerplate for web development based on [.NET Core](http://dotnet.github.io/),
-> [Kestrel](https://github.com/aspnet/KestrelHttpServer), [GraphQL](http://graphql.org/) on the
-> backend and [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
-> [React](https://facebook.github.io/react) and [Redux](http://redux.js.org/) on the frontend.
-> This boilerplate comes in both [C#](https://github.com/kriasoft/aspnet-starter-kit) and
-> [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
+> [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) is a real-world
+> boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
+> (SPA) oriented towards [progressive enhancement](https://en.wikipedia.org/wiki/Progressive_enhancement)
+> design, cross-platform compatability and component-based UI architecture. It is built upon best of
+> breed technologies including [.NET Core](https://dot.net/core), [Kestrel](https://github.com/aspnet/KestrelHttpServer),
+> [EF Core](https://ef.readthedocs.io/en/latest/), [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
+> [React](https://facebook.github.io/react), [Redux](http://redux.js.org/), [CSS Modules](https://github.com/css-modules/css-modules),
+> [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more. This boilerplate comes in
+> both [C#](https://github.com/kriasoft/aspnet-starter-kit) and [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
 
 **The work is being sponsored by [Rollbar](https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)) and [Localize](https://localizejs.com/?cid=802&utm_source=rsk):**
 
