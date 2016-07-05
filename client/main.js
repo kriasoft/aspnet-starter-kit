@@ -9,39 +9,44 @@
 
 import 'babel-polyfill';
 import 'whatwg-fetch';
-import React, { PropTypes } from 'react';
+
+import React from 'react';
 import ReactDOM from 'react-dom';
+import FastClick from 'fastclick';
+import { Provider } from 'react-redux';
 
 import store from './store';
-import history from './history';
 import router from './router';
-/* eslint-disable import/no-unresolved */
-import routes from '!!./utils/routes-loader!./routes.json';
-/* eslint-enable import/no-unresolved */
-
-const context = { history, store };
+import history from './history';
+let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('container');
 
-// The top-level React component the goal of which is to provide
-// context variables such as Redux store to all the child components
-class App extends React.Component {
-  static childContextTypes = {
-    history: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
-  };
-  static propTypes = {
-    component: PropTypes.node.isRequired,
-  };
-  getChildContext() { return context; }
-  render() { return this.props.component; }
+function renderComponent(component) {
+  ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
 }
 
+// Find and render a web page matching the current URL path,
+// if such page is not found then render an error page (see routes.json, core/router.js)
 function render(location) {
-  router.resolve(routes, { path: location.pathname })
-    .then(component => {
-      ReactDOM.render(<App component={component} />, container);
-    });
+  router.resolve(routes, location)
+    .then(renderComponent)
+    .catch(error => router.resolve(routes, { ...location, error }).then(renderComponent));
 }
 
+// Handle client-side navigation by using HTML5 History API
+// For more information visit https://github.com/ReactJSTraining/history/tree/master/docs#readme
 history.listen(render);
 render(history.getCurrentLocation());
+
+// Eliminates the 300ms delay between a physical tap
+// and the firing of a click event on mobile browsers
+// https://github.com/ftlabs/fastclick
+FastClick.attach(document.body);
+
+// Enable Hot Module Replacement (HMR)
+if (module.hot) {
+  module.hot.accept('./routes.json', () => {
+    routes = require('./routes.json'); // eslint-disable-line global-require
+    render(history.getCurrentLocation());
+  });
+}

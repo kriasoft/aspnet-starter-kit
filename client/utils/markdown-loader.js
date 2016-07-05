@@ -11,7 +11,7 @@ const MarkdownIt = require('markdown-it');
 const hljs = require('highlight.js');
 const fm = require('front-matter');
 
-module.exports = function markdown(source) {
+module.exports = function markdownLoader(source) {
   this.cacheable();
 
   const md = new MarkdownIt({

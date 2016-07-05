@@ -23,11 +23,14 @@
 &nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/core/store.js`](client/core/store.js))<br>
 &nbsp; &nbsp; ✓ Universal cross-stack routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/ReactJSTraining/history) (see [`client/routes.json`](client/routes.json))<br>
 &nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading with [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
-&nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/) (coming soon)<br>
+&nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/)<br>
 &nbsp; &nbsp; ✓ Lightweight build automation with plain JavaScript (see [`run.js`](run.js))<br>
-&nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (coming soon)<br>
+&nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/)<br>
 &nbsp; &nbsp; ✓ Git-based deployment to [Azure App Service](https://azure.microsoft.com/services/app-service/) (see [`run.js/publish`](run.js))<br>
-&nbsp; &nbsp; ✓ 24/7 community support on [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-starter-kit); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
+&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-starter-kit); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
+
+**See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
+[Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [Twitter](https://twitter.com/dotnetreact)
 
 
 ### Directory Layout
@@ -46,7 +49,10 @@
 │   ├── routes.json             # The list of application routes
 │   └── store.js                # Application state manager (Redux)
 ├── /client.test/               # Unit and integration tests for the frontend app
+├── /docs/                      # Documentation to the project
 ├── /public/                    # Static files such as favicon.ico etc.
+│   ├── robots.txt              # Instructions for search engine crawlers
+│   └── ...                     # etc.
 ├── /server/                    # Web server and data API (backend)
 │   ├── /Controllers/           # ASP.NET Web API and MVC controllers
 │   ├── /Models/                # Entity Framework models (entities)
@@ -98,11 +104,11 @@ $ npm install                   # Install both Node.js and .NET Core dependencie
 `3`. Finally, launch the web app:
 
 ```shell
-$ npm start                     # Compile and lanch the app, same as running: node run
+$ node run                      # Compile and lanch the app, same as running: npm start
 ```
 
 The app should become available at [http://localhost:5000/](http://localhost:5000/).
-See [`run.js`](run.js) for other available commands such as `npm run build`, `npm run publish` etc.
+See [`run.js`](run.js) for other available commands such as `node run build`, `node run publish` etc.
 
 
 ### How to Deploy
@@ -114,7 +120,7 @@ Web App into [`run.js/publish`](run.js) file. Finally, whenever you need to comp
 app into a distributable format and upload that to Windows Azure App Service, simply run:
 
 ```shell
-$ npm run publish                # Same as running: node run publish --release
+$ node run publish              # Same as running: npm run publish
 ```
 
 ### How to Update

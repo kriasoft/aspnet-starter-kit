@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-/* eslint-disable no-console */
+/* eslint-disable no-console, global-require */
 
 const fs = require('fs');
 const del = require('del');
@@ -18,8 +18,6 @@ const webpack = require('webpack');
 const cp = require('child_process');
 
 const tasks = new Map();
-const webpackConfig = require('./webpack.config');
-const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
 
 function run(task) {
   const start = new Date();
@@ -33,26 +31,29 @@ function run(task) {
 // Clean up the output directory
 // -----------------------------------------------------------------------------
 tasks.set('clean', () => Promise.resolve()
-  .then(() => del(['build/*', 'public/assets/*', '!build/.git'], { dot: true }))
+  .then(() => del(['build/*', 'public/dist/*', '!build/.git'], { dot: true }))
   .then(() => {
-    mkdirp.sync('build/public/assets');
-    mkdirp.sync('public/assets');
+    mkdirp.sync('build/public/dist');
+    mkdirp.sync('public/dist');
   })
 );
 
 //
 // Compile client-side source code into a distributable format
 // -----------------------------------------------------------------------------
-tasks.set('bundle', () => new Promise((resolve, reject) => {
-  webpack(webpackConfig).run((err, stats) => {
-    if (err) {
-      reject(err);
-    } else {
-      console.log(stats.toString(webpackConfig.stats));
-      resolve();
-    }
+tasks.set('bundle', () => {
+  const webpackConfig = require('./webpack.config');
+  return new Promise((resolve, reject) => {
+    webpack(webpackConfig).run((err, stats) => {
+      if (err) {
+        reject(err);
+      } else {
+        console.log(stats.toString(webpackConfig.stats));
+        resolve();
+      }
+    });
   });
-}));
+});
 
 //
 // Copy static files into the output folder
@@ -80,30 +81,33 @@ tasks.set('appsettings', () => new Promise(resolve => {
 //
 // Copy static files into the output folder
 // -----------------------------------------------------------------------------
-tasks.set('build', () => Promise.resolve()
-  .then(() => run('clean'))
-  .then(() => run('bundle'))
-  .then(() => run('copy'))
-  .then(() => run('appsettings'))
-  .then(() => new Promise((resolve, reject) => {
-    const options = { stdio: ['ignore', 'inherit', 'inherit'] };
-    const config = isDebug ? 'Debug' : 'Release';
-    const args = ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr'];
-    cp.spawn('dotnet', args, options).on('close', code => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(new Error(`dotnet ${args.join(' ')} => ${code} (error)`));
-      }
-    });
-  }))
-);
+tasks.set('build', () => {
+  global.DEBUG = process.argv.includes('--debug') || false;
+  return Promise.resolve()
+    .then(() => run('clean'))
+    .then(() => run('bundle'))
+    .then(() => run('copy'))
+    .then(() => run('appsettings'))
+    .then(() => new Promise((resolve, reject) => {
+      const options = { stdio: ['ignore', 'inherit', 'inherit'] };
+      const config = global.DEBUG ? 'Debug' : 'Release';
+      const args = ['publish', 'server', '-o', 'build', '-c', config, '-r', 'coreclr'];
+      cp.spawn('dotnet', args, options).on('close', code => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`dotnet ${args.join(' ')} => ${code} (error)`));
+        }
+      });
+    }));
+});
 
 
 //
 // Build and publish web application to Azure Web Apps
 // -----------------------------------------------------------------------------
 tasks.set('publish', () => {
+  global.DEBUG = process.argv.includes('--debug') || false;
   const remote = {
     name: 'azure',
     url: 'https://<user>@<app>.scm.azurewebsites.net:443/<app>.git', // TODO: Update deployment URL
@@ -144,36 +148,62 @@ tasks.set('publish', () => {
 //
 // Build website and start watching for modifications
 // -----------------------------------------------------------------------------
-tasks.set('start', () => Promise.resolve()
-  .then(() => run('clean'))
-  .then(() => run('appsettings'))
-  .then(() => new Promise((resolve, reject) => {
-    const compiler = webpack(webpackConfig);
-    compiler.watch({}, (err, stats) => {
-      if (err) {
-        reject(err);
-      } else {
-        console.log(stats.toString(webpackConfig.stats));
-        resolve();
-      }
-    });
-  }))
-  .then(() => new Promise(resolve => {
-    const options = {
-      cwd: path.resolve(__dirname, './server/'),
-      stdio: ['ignore', 'pipe', 'inherit'],
-      env: {
-        ASPNETCORE_ENVIRONMENT: 'Development',
-      },
-    };
-    cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
-      process.stdout.write(data);
-      if (data.indexOf('Application started.') !== -1) {
-        resolve();
-      }
-    });
-  }))
-);
+tasks.set('start', () => {
+  global.HMR = !process.argv.includes('--no-hmr'); // Hot Module Replacement (HMR)
+  const webpackConfig = require('./webpack.config');
+  const bundler = webpack(webpackConfig);
+  const bs = require('browser-sync').create();
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  return Promise.resolve()
+    .then(() => run('clean'))
+    .then(() => run('appsettings'))
+    .then(() => new Promise(resolve => {
+      const options = {
+        cwd: path.resolve(__dirname, './server/'),
+        stdio: ['ignore', 'pipe', 'inherit'],
+        env: {
+          ASPNETCORE_ENVIRONMENT: 'Development',
+        },
+      };
+      cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
+        process.stdout.write(data);
+        if (data.indexOf('Application started.') !== -1) {
+          resolve();
+        }
+      });
+    }))
+    .then(() => new Promise(resolve => {
+      bs.init({
+        proxy: {
+          target: 'localhost:5000',
+          middleware: [
+            webpackDevMiddleware(bundler, {
+              // IMPORTANT: dev middleware can't access config, so we should
+              // provide publicPath by ourselves
+              publicPath: webpackConfig.output.publicPath,
+
+              // pretty colored output
+              stats: webpackConfig.stats,
+
+              // for other settings see
+              // http://webpack.github.io/docs/webpack-dev-middleware.html
+            }),
+
+            // bundler should be the same as above
+            webpackHotMiddleware(bundler),
+          ],
+        },
+
+        // no need to watch '*.js' here, webpack will take care of it for us,
+        // including full page reloads if HMR won't work
+        files: [
+          'public/**/*.css',
+          'public/**/*.html',
+        ],
+      }, resolve);
+    }));
+});
 
 // Execute the specified task or default one. E.g.: node run build
 run(process.argv[2] || 'start');

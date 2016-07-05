@@ -30,13 +30,6 @@ function decodeParam(val) {
 //   matchURI({ path: '/posts/:id' }, '/dummy') => null
 //   matchURI({ path: '/posts/:id' }, '/posts/123') => { id: 123 }
 function matchURI(route, path) {
-  // Deserialize the RegExp pattern (see utils/routes-loader.js)
-  if (typeof route.pattern === 'string') {
-    const fragments = route.pattern.match(/\/(.*?)\/([gimy])?$/);
-    /* eslint-disable no-param-reassign */
-    route.pattern = new RegExp(fragments[1], fragments[2] || '');
-    /* eslint-enable no-param-reassign */
-  }
   const match = route.pattern.exec(path);
 
   if (!match) {
@@ -52,21 +45,23 @@ function matchURI(route, path) {
   return params;
 }
 
+// Find the route matching the specified location (context), fetch the required data,
+// instantiate and return a React component
 function resolve(routes, context) {
   for (const route of routes) {
-    const params = matchURI(route, context.path);
+    const params = matchURI(route, context.error ? '/error' : context.pathname);
 
     if (!params) {
       continue;
     }
 
-    return route.view().then(View => <View.default route={route} />);
+    // TODO: Fetch data required data for the route. See "routes.json" file in the root directory.
+    return route.load().then(Page => <Page.default route={route} error={context.error} />);
   }
 
-  const error = new Error('Not found');
+  const error = new Error('Page not found');
   error.status = 404;
-  const route = routes.find(x => x.path === '/error');
-  return route.view().then(View => <View.default route={route} error={error} />);
+  return Promise.reject(error);
 }
 
 export default { resolve };

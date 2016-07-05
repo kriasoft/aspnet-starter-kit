@@ -5,7 +5,7 @@
 build
 bin/
 obj/
-public/assets
+public/dist
 
 # Node.js, NPM
 node_modules

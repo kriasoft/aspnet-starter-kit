@@ -1,6 +1,7 @@
 {
   "name": "app",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
   "engines": {
     "node": ">=6",
     "npm": ">=3.8"
@@ -8,16 +9,17 @@
   "dependencies": {
     "babel-polyfill": "6.9.1",
     "classnames": "2.2.5",
-    "history": "^3.0.0",
-    "react": "15.1.0",
-    "react-dom": "15.1.0",
-    "redux": "^3.5.2",
-    "whatwg-fetch": "^1.0.0"
+    "fastclick": "1.0.6",
+    "history": "3.0.0",
+    "react": "15.2.0",
+    "react-dom": "15.2.0",
+    "react-redux": "4.4.5",
+    "redux": "3.5.2",
+    "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
-    "autoprefixer": "^6.3.6",
-    "babel-cli": "^6.10.1",
+    "autoprefixer": "^6.3.7",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
@@ -28,19 +30,20 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "babel-runtime": "^6.9.2",
+    "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
     "cpy": "^4.0.1",
     "css-loader": "^0.23.1",
     "del": "^2.2.1",
-    "eslint": "^2.13.1",
+    "eslint": "^3.0.0",
     "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.9.2",
+    "eslint-plugin-import": "^1.10.2",
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "extend": "^3.0.0",
     "file-loader": "^0.9.0",
     "front-matter": "^2.1.0",
-    "highlight.js": "^9.4.0",
+    "highlight.js": "^9.5.0",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
     "mkdirp": "^0.5.1",
@@ -62,12 +65,12 @@
     "postcss-selector-not": "^2.0.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "style-loader": "^0.13.1",
-    "stylelint": "^6.7.1",
-    "stylelint-config-standard": "^9.0.0",
+    "stylelint": "^6.8.0",
+    "stylelint-config-standard": "^10.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.14",
+    "webpack": "^2.1.0-beta.15",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.11.0"
+    "webpack-hot-middleware": "^2.12.0"
   },
   "babel": {
     "presets": [
@@ -92,13 +95,15 @@
   "scripts": {
     "postinstall": "dotnet restore server server.test",
     "eslint": "eslint client client.test run.js webpack.config.js",
-    "stylelint": "stylelint \"client/components/**/*.css\" \"client/routes/**/*.css\"",
+    "stylelint": "stylelint \"client/components/**/*.css\" \"client/views/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
     "test": "mocha \"client.test\" --compilers js:babel-register",
     "test:watch": "mocha \"client.test\" --compilers js:babel-register --reporter min --watch",
     "clean": "node run clean",
-    "build": "node run build --release",
-    "publish": "node run publish --release",
-    "start": "node run start"
+    "build": "node run build",
+    "build:debug": "node run build --debug",
+    "publish": "node run publish",
+    "publish:debug": "node run publish --debug",
+    "start": "node run"
   }
 }
