@@ -162,9 +162,9 @@ tasks.set('start', () => {
       const options = {
         cwd: path.resolve(__dirname, './server/'),
         stdio: ['ignore', 'pipe', 'inherit'],
-        env: {
+        env: Object.assign({}, process.env, {
           ASPNETCORE_ENVIRONMENT: 'Development',
-        },
+        }),
       };
       cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
         process.stdout.write(data);
