@@ -48,6 +48,7 @@
     "markdown-it": "^7.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.5.3",
+    "object-extend": "^0.5.0",
     "path-to-regexp": "^1.5.3",
     "pixrem": "^3.0.1",
     "pleeease-filters": "^3.0.0",

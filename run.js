@@ -16,6 +16,7 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const webpack = require('webpack');
 const cp = require('child_process');
+const extend = require('object-extend');
 
 const tasks = new Map();
 
@@ -162,9 +163,9 @@ tasks.set('start', () => {
       const options = {
         cwd: path.resolve(__dirname, './server/'),
         stdio: ['ignore', 'pipe', 'inherit'],
-        env: {
+        env: extend(process.env, {
           ASPNETCORE_ENVIRONMENT: 'Development',
-        },
+        }),
       };
       cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
         process.stdout.write(data);
