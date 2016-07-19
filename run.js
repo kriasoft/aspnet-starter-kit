@@ -142,7 +142,7 @@ tasks.set('publish', () => {
     .then(() => git('add', '.', '--all'))
     .then(() => git('commit', '--message', new Date().toUTCString())
       .catch(() => Promise.resolve()))
-    .then(() => git('push', 'origin', 'master', '--force', '--set-upstream'));
+    .then(() => git('push', remote.name, 'master', '--force', '--set-upstream'));
 });
 
 //
