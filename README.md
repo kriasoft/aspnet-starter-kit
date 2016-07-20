@@ -1,4 +1,4 @@
-# ASP.NET Core Starter Kit &nbsp; ![Status](https://img.shields.io/badge/status-early%20preview-orange.svg?style=flat-square) [![Online Chat](http://img.shields.io/badge/chat-%23aspnet--starter--kit-blue.svg?style=flat-square)](https://gitter.im/kriasoft/aspnet-starter-kit) [![Tips](https://img.shields.io/badge/donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSV6K6LZU2VGW)
+# ASP.NET Core Starter Kit &nbsp; [![Online Chat](http://img.shields.io/badge/chat-%23aspnet--starter--kit-blue.svg?style=flat-square)](https://gitter.im/kriasoft/aspnet-starter-kit) [![Tips](https://img.shields.io/badge/donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSV6K6LZU2VGW)
 
 > [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) is a real-world
 > boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
@@ -10,7 +10,9 @@
 > [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more. This boilerplate comes in
 > both [C#](https://github.com/kriasoft/aspnet-starter-kit) and [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
 
-**The work is being sponsored by [Rollbar](https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)) and [Localize](https://localizejs.com/?cid=802&utm_source=rsk):**
+**See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
+[Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [Twitter](https://twitter.com/dotnetreact)
+ &nbsp;|&nbsp; **Visit our sponsors**:
 
 <a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
 <a href="https://localizejs.com/?cid=802&utm_source=rsk"><img src="https://koistya.github.io/files/localize-x64.png" alt="Localize" width="291" height="64"></a>
@@ -18,19 +20,16 @@
 
 ### Features
 
-&nbsp; &nbsp; ✓ Component-based front-end development via [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`tools/webpack.config.js`](webpack.config.js))<br>
+&nbsp; &nbsp; ✓ Component-based front-end development via [Webpack](https://webpack.github.io/), [CSS Modules](https://github.com/css-modules/css-modules) and [React](https://facebook.github.io/react) (see [`webpack.config.js`](webpack.config.js))<br>
 &nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/); modern CSS syntax (CSS3+) via [PostCSS](https://github.com/postcss/postcss)<br>
-&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/core/store.js`](client/core/store.js))<br>
+&nbsp; &nbsp; ✓ Application state management via [Redux](http://redux.js.org/) (see [`client/store.js`](client/store.js))<br>
 &nbsp; &nbsp; ✓ Universal cross-stack routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/ReactJSTraining/history) (see [`client/routes.json`](client/routes.json))<br>
 &nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading with [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
 &nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/)<br>
 &nbsp; &nbsp; ✓ Lightweight build automation with plain JavaScript (see [`run.js`](run.js))<br>
 &nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/)<br>
 &nbsp; &nbsp; ✓ Git-based deployment to [Azure App Service](https://azure.microsoft.com/services/app-service/) (see [`run.js/publish`](run.js))<br>
-&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-starter-kit); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
-
-**See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
-[Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [Twitter](https://twitter.com/dotnetreact)
+&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-starter-kit); consulting and customization requests on [Codementor](https://www.codementor.io/koistya)<br>
 
 
 ### Directory Layout
@@ -72,13 +71,13 @@
 
 * OS X, Windows or Linux
 * [Node.js](https://nodejs.org) v6 or newer
-* [.NET Core SDK](https://www.microsoft.com/net/core)
-* [Visual Studio Code](https://code.visualstudio.com/) with [C# extension](https://github.com/OmniSharp/omnisharp-vscode)
+* [.NET Core](https://www.microsoft.com/net/core) and [.NET Core SDK](https://www.microsoft.com/net/core)
+* [Visual Studio Code](https://code.visualstudio.com/) with [C# extension](https://github.com/OmniSharp/omnisharp-vscode) (or Visual Studio 2015 or newer)
 
 
 ### Getting Started
 
-`1`. Clone the latest version of **ASP.NET Core Starter Kit** on your local machine by running:
+**Step 1**. Clone the latest version of **ASP.NET Core Starter Kit** on your local machine by running:
 
 ```shell
 $ git clone -o aspnet-starter-kit -b master --single-branch \
@@ -94,14 +93,14 @@ $ npm install -g generator-aspnetcore
 $ yo aspnetcore
 ```
 
-`2`. Install project dependencies listed in [`project.json`](server/project.json) and
+**Step 2**. Install project dependencies listed in [`project.json`](server/project.json) and
 [`package.json`](package.json) files: 
 
 ```shell
 $ npm install                   # Install both Node.js and .NET Core dependencies
 ```
 
-`3`. Finally, launch the web app:
+**Step 3**. Finally, launch your web app:
 
 ```shell
 $ node run                      # Compile and lanch the app, same as running: npm start
@@ -109,6 +108,8 @@ $ node run                      # Compile and lanch the app, same as running: np
 
 The app should become available at [http://localhost:5000/](http://localhost:5000/).
 See [`run.js`](run.js) for other available commands such as `node run build`, `node run publish` etc.
+You can also run your app in a release (production) mode by running `node run --release`, or without
+Hot Module Replacement (HMR) by running `node run --no-hmr`.
 
 
 ### How to Deploy
@@ -201,11 +202,12 @@ requests](CONTRIBUTING.md#pull-requests).
 
 * [#aspnet-starter-kit](https://gitter.im/kriasoft/aspnet-starter-kit) on Gitter
 * [@koistya](https://twitter.com/koistya) on [Codementor](https://www.codementor.io/koistya)
+  or [Skype](http://hatscripts.com/addskype?koistya)
 
 
 ### License
 
-Copyright © 2014-2016 [Kriasoft](https://kriasoft.com). This source code is licensed under the MIT
+Copyright © 2014-present [Kriasoft](https://kriasoft.com). This source code is licensed under the MIT
 license found in the [LICENSE.txt](https://github.com/kriasoft/react-starter-kit/blob/master/LICENSE.txt)
 file. The documentation to the project is licensed under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 license.
