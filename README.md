@@ -6,7 +6,7 @@
 
 **The work is being sponsored by:**
 
-<a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
+<a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt="Rollbar" width="235" height="64"></a>
 <a href="https://localizejs.com/?cid=802&utm_source=rsk"><img src="https://koistya.github.io/files/localize-x64.png" alt="Localize" width="291" height="64"></a>
 
 
@@ -36,10 +36,10 @@ For more information visit https://github.com/kriasoft/aspnet-starter-kit
 ### License
 
 Copyright © 2016-present Kriasoft, LLC. This source code is licensed under the MIT license found in
-the [LICENSE.txt](https://github.com/kriasoft/react-static-boilerplate/blob/master/LICENSE.txt) file.
+the [LICENSE.txt](https://github.com/kriasoft/aspnet-starter-kit/blob/master/LICENSE.txt) file.
 
 ---
 Made with ♥ by Konstantin Tarkus ([@koistya](https://twitter.com/koistya)) and
-[contributors](https://github.com/kriasoft/react-static-boilerplate/graphs/contributors) 
+[contributors](https://github.com/kriasoft/aspnet-starter-kit/graphs/contributors) 
 
 

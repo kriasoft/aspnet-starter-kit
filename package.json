@@ -1,6 +1,6 @@
 {
   "name": "generator-aspnetcore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stand-alone web application (SPA) boilerplate built with ASP.NET Core, EF Core, Identity, C#, JavaScript, ES6/ES2015, Babel, Webpack, HMR, Browsersync, PostCSS, CSS Modules and more",
   "repository": "kriasoft/aspnet-starter-kit",
   "author": "Kriasoft <hello@kriasoft.com> (https://www.kriasoft.com)",
