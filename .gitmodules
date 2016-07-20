@@ -1,0 +1,3 @@
+[submodule "generators/app/templates"]
+	path = generators/app/templates
+	url = https://github.com/kriasoft/aspnet-starter-kit.git

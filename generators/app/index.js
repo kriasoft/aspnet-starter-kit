@@ -1,44 +1,51 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var cp = require('child_process');
 
-module.exports = yeoman.Base.extend({
-  prompting: function () {
-    this.log(yosay(
-      'Welcome to the ' + chalk.green('ASP.NET Core') + ' generator!'
-    ));
+var _yeomanGenerator = require('yeoman-generator');
 
-    var spawnOptions = {
-      cwd: this.destinationRoot(),
-      stdio: ['ignore', 'inherit', 'inherit'],
-    };
+var _chalk = require('chalk');
 
-    this.spawn = function (cmd, args, callback) {
-      cp.spawn(cmd, args, spawnOptions).on('close', function (code) {
-        if (code === 0) {
-          callback();
-        } else {
-          callback(new Error(cmd + ' ' + args.join(' ') + ' => ' + code + ' (error)'));
-        }
-      });
-    };
+var _chalk2 = _interopRequireDefault(_chalk);
+
+var _yosay = require('yosay');
+
+var _yosay2 = _interopRequireDefault(_yosay);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _yeomanGenerator.Base.extend({
+  prompting: function prompting() {
+    // Have Yeoman greet the user.
+    this.log((0, _yosay2.default)('Welcome to the amazing ' + _chalk2.default.red('ASP.NET Core') + ' generator!'));
+
+    // const prompts = [{
+    //   type: 'confirm',
+    //   name: 'someAnswer',
+    //   message: 'Would you like to enable this option?',
+    //   default: true,
+    // }];
+
+    // return this.prompt(prompts).then(props => {
+    //   // To access props later use this.props.someAnswer;
+    //   this.props = props;
+    // });
   },
-
-  clonning: function () {
-    var done = this.async();
-    this.spawn('git', [
-      'clone', '-o', 'aspnet-starter-kit', '-b', 'master', '--single-branch',
-      'https://github.com/kriasoft/aspnet-starter-kit.git', this.destinationRoot()], done);
+  writing: function writing() {
+    this.fs.copy(this.templatePath('**/*'), this.destinationRoot(), {
+      globOptions: {
+        dot: true,
+        ignore: ['**/.git', '**/.npmignore', '**/CONTRIBUTING.md']
+      }
+    });
   },
-
-  install: function () {
+  install: function install() {
     this.installDependencies();
-  },
-
-  dotnetRestore: function () {
-    var done = this.async();
-    this.spawn('dotnet', ['restore'], done);
-  },
-});
+  }
+}); /**
+     * Yeoman Generator Starter Kit
+     *
+     * Copyright © 2016-present Kriasoft, LLC. All rights reserved.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE.txt file in the root directory of this source tree.
+     */
+//# sourceMappingURL=index.js.map

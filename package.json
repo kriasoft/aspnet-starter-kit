@@ -1,66 +1,86 @@
 {
   "name": "generator-aspnetcore",
-  "version": "0.1.1",
-  "description": "Yeoman generator for ASP.NET Core Starter Kit - a single-page application boilerplate (ASP.NET Core, EF Core, Identity, C#, JavaScript, ES6, React, Babel, Webpack, PostCSS, CSS Modules)",
-  "repository": "https://github.com/kriasoft/aspnet-starter-kit/tree/generator-aspnetcore",
+  "version": "1.0.0",
+  "description": "Stand-alone web application (SPA) boilerplate built with ASP.NET Core, EF Core, Identity, C#, JavaScript, ES6/ES2015, Babel, Webpack, HMR, Browsersync, PostCSS, CSS Modules and more",
+  "repository": "kriasoft/aspnet-starter-kit",
   "author": "Kriasoft <hello@kriasoft.com> (https://www.kriasoft.com)",
   "contributors": [
     "Konstantin Tarkus <hello@tarkus.me>"
   ],
-  "files": [
-    "generators"
-  ],
-  "main": "generators\\index.js",
   "keywords": [
-    "yeoman-generator",
     "asp.net",
-    "asp.net core",
     "aspnet",
+    "asp.net core",
+    "aspnetcore",
+    "dot.net",
+    "dotnet",
     "react",
     "reactjs",
     "react.js",
-    "webpack",
+    "redux",
+    "routing",
+    "router",
+    "component",
+    "front-end",
     "babel",
-    "es6",
-    "es2015",
+    "webpack",
     "postcss",
     "css modules",
+    "es6",
+    "es2015",
     "scaffold",
+    "scaffolding",
     "boilerplate",
-    "front-end",
-    "frontend",
-    "spa",
-    "web"
+    "yeoman-generator"
   ],
+  "files": [
+    "generators",
+    "src"
+  ],
+  "main": "generators\\index.js",
   "dependencies": {
-    "yeoman-generator": "^0.23.0",
-    "chalk": "^1.0.0",
-    "yosay": "^1.0.0"
+    "babel-runtime": "^6.9.2",
+    "chalk": "^1.1.3",
+    "yeoman-generator": "^0.23.4",
+    "yosay": "^1.2.0"
   },
   "devDependencies": {
-    "yeoman-test": "^1.0.0",
-    "yeoman-assert": "^2.0.0",
-    "eslint": "^2.1.0",
-    "eslint-config-xo-space": "^0.13.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^2.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0",
-    "gulp-coveralls": "^0.1.0"
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "del": "^2.2.1",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.3",
+    "mocha": "^2.5.3",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.4.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
   },
   "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
+    "parser": "babel-eslint",
+    "extends": "airbnb/base",
+    "rules": {
+      "import/no-mutable-exports": 0
     }
   },
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
-  },
-  "license": "MIT"
+    "build": "node run build",
+    "build:watch": "node run build --watch",
+    "lint": "eslint src test",
+    "test": "mocha --compilers js:babel-register",
+    "test:watch": "mocha --compilers js:babel-register --reporter min --watch"
+  }
 }
