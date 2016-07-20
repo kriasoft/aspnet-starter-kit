@@ -7,7 +7,7 @@ bin/
 obj/
 public/dist
 
-# Node.js, NPM
+# Node.js and NPM
 node_modules
 npm-debug.log
 

@@ -10,7 +10,6 @@
 /* eslint-disable global-require */
 
 const path = require('path');
-const extend = require('extend');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('./package.json');
@@ -18,8 +17,12 @@ const pkg = require('./package.json');
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 const useHMR = !!global.HMR; // Hot Module Replacement (HMR)
+const babelConfig = Object.assign({}, pkg.babel, {
+  babelrc: false,
+  cacheDirectory: useHMR,
+});
 
-// Webpack configuration (client/main.js => public/dist/main.<hash>.js)
+// Webpack configuration (client/main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
 
@@ -28,6 +31,10 @@ const config = {
 
   // The entry point for the bundle
   entry: [
+    /* Material Design Lite (https://getmdl.io) */
+    '!!style!css!react-mdl/extra/material.min.css',
+    'react-mdl/extra/material.min.js',
+    /* The main entry point of your JavaScript application */
     './main.js',
   ],
 
@@ -84,8 +91,7 @@ const config = {
         include: [
           path.resolve(__dirname, './client'),
         ],
-        loader: 'babel-loader',
-        query: extend({}, pkg.babel, { babelrc: false }),
+        loader: `babel-loader?${JSON.stringify(babelConfig)}`,
       },
       {
         test: /\.css/,
@@ -114,7 +120,10 @@ const config = {
         include: [
           path.resolve(__dirname, './client/routes.json'),
         ],
-        loader: path.resolve(__dirname, './client/utils/routes-loader.js'),
+        loaders: [
+          `babel-loader?${JSON.stringify(babelConfig)}`,
+          path.resolve(__dirname, './client/utils/routes-loader.js'),
+        ],
       },
       {
         test: /\.md$/,
@@ -180,7 +189,6 @@ const config = {
 };
 
 // Integrate Webpack 2.x (replace 'es2015' preset with 'es2015-webpack')
-const babelConfig = config.module.loaders.find(x => x.loader === 'babel-loader').query;
 babelConfig.presets = babelConfig.presets.map(x => (x === 'es2015' ? `${x}-webpack` : x));
 
 // Optimize the bundle in release (production) mode

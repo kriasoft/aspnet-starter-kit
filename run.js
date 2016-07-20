@@ -39,7 +39,7 @@ tasks.set('clean', () => Promise.resolve()
 );
 
 //
-// Compile client-side source code into a distributable format
+// Bundle JavaScript, CSS and image files with Webpack
 // -----------------------------------------------------------------------------
 tasks.set('bundle', () => {
   const webpackConfig = require('./webpack.config');
@@ -146,64 +146,53 @@ tasks.set('publish', () => {
 });
 
 //
-// Build website and start watching for modifications
+// Build website and launch it in a browser for testing in watch mode
 // -----------------------------------------------------------------------------
 tasks.set('start', () => {
   global.HMR = !process.argv.includes('--no-hmr'); // Hot Module Replacement (HMR)
-  const webpackConfig = require('./webpack.config');
-  const bundler = webpack(webpackConfig);
-  const bs = require('browser-sync').create();
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
   return Promise.resolve()
     .then(() => run('clean'))
     .then(() => run('appsettings'))
     .then(() => new Promise(resolve => {
-      const options = {
-        cwd: path.resolve(__dirname, './server/'),
-        stdio: ['ignore', 'pipe', 'inherit'],
-        env: Object.assign({}, process.env, {
-          ASPNETCORE_ENVIRONMENT: 'Development',
-        }),
-      };
-      cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
-        process.stdout.write(data);
-        if (data.indexOf('Application started.') !== -1) {
-          resolve();
+      let count = 0;
+      const webpackConfig = require('./webpack.config');
+      const compiler = webpack(webpackConfig);
+      // Node.js middleware that compiles application in watch mode with HMR support
+      // http://webpack.github.io/docs/webpack-dev-middleware.html
+      const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: webpackConfig.stats,
+      });
+      compiler.plugin('done', () => {
+        // Launch ASP.NET Core server after the initial bundling is complete
+        if (++count === 1) {
+          const options = {
+            cwd: path.resolve(__dirname, './server/'),
+            stdio: ['ignore', 'pipe', 'inherit'],
+            env: Object.assign({}, process.env, {
+              ASPNETCORE_ENVIRONMENT: 'Development',
+            }),
+          };
+          cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', data => {
+            process.stdout.write(data);
+            if (data.indexOf('Application started.') !== -1) {
+              // Launch Browsersync after the initial bundling is complete
+              // For more information visit https://browsersync.io/docs/options
+              require('browser-sync').create().init({
+                proxy: {
+                  target: 'localhost:5000',
+                  middleware: [
+                    webpackDevMiddleware,
+                    require('webpack-hot-middleware')(compiler),
+                  ],
+                },
+              }, resolve);
+            }
+          });
         }
       });
-    }))
-    .then(() => new Promise(resolve => {
-      bs.init({
-        proxy: {
-          target: 'localhost:5000',
-          middleware: [
-            webpackDevMiddleware(bundler, {
-              // IMPORTANT: dev middleware can't access config, so we should
-              // provide publicPath by ourselves
-              publicPath: webpackConfig.output.publicPath,
-
-              // pretty colored output
-              stats: webpackConfig.stats,
-
-              // for other settings see
-              // http://webpack.github.io/docs/webpack-dev-middleware.html
-            }),
-
-            // bundler should be the same as above
-            webpackHotMiddleware(bundler),
-          ],
-        },
-
-        // no need to watch '*.js' here, webpack will take care of it for us,
-        // including full page reloads if HMR won't work
-        files: [
-          'public/**/*.css',
-          'public/**/*.html',
-        ],
-      }, resolve);
     }));
 });
 
 // Execute the specified task or default one. E.g.: node run build
-run(process.argv[2] || 'start');
+run(/^\w/.test(process.argv[2] || '') ? process.argv[2] : 'start' /* default */);

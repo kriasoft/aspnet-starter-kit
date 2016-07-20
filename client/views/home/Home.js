@@ -7,13 +7,17 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Layout from '../../components/Layout';
 
 const title = 'ASP.NET Core Starter Kit';
 const link = 'https://github.com/kriasoft/aspnet-starter-kit';
 
 class Home extends React.Component {
+
+  static propTypes = {
+    articles: PropTypes.array.isRequired,
+  };
 
   componentDidMount() {
     document.title = title;
@@ -26,6 +30,12 @@ class Home extends React.Component {
         <p className="mdl-typography--body-1">
           For more information visit <a href={link}>{link}</a>
         </p>
+        <h4 className="mdl-typography--title">Articles</h4>
+        <ul>
+          {this.props.articles.map((article, i) =>
+            <li key={i}><a href={article.url}>{article.title}</a> by {article.author}</li>
+          )}
+        </ul>
       </Layout>
     );
   }
