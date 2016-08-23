@@ -12,7 +12,7 @@
 
 **See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
 [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [Twitter](https://twitter.com/dotnetreact)
-&nbsp;|&nbsp; **Learn** [React.js and ES6](#learn-reactjs-and-es6)
+&nbsp;|&nbsp; **Learn** [React.js, ES6 and ASP.NET Core](#learn-reactjs-es6-and-aspnet-core)
 &nbsp;|&nbsp; **Visit our sponsors**:
 
 <a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
@@ -151,13 +151,15 @@ participate in discussions, upvote or downvote the issues you like or dislike, s
 requests](CONTRIBUTING.md#pull-requests).
 
 
-### Learn React.js and ES6
+### Learn React.js, ES6 and ASP.NET Core
 
 :mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
 :mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
 :green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bzweBe)** by Stoyan Stefanov (Aug, 2016)<br>
 :green_book: &nbsp; **[Getting Started with React](http://amzn.to/2bDmSmG)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
 :green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bKpb4I)** by Kyle Simpson (Dec, 2015)<br>
+:green_book: &nbsp; **[C# 6 and .NET Core 1.0: Modern Cross-Platform Development](http://amzn.to/2btgwG7)** by Mark J. Price (Mar, 2016)<br>
+:green_book: &nbsp; **[Professional C# 6 and .NET Core 1.0](http://amzn.to/2btgHkV)** by Christian Nagel (Apr, 2016)<br>
 
 
 ### Related Projects
