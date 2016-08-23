@@ -12,7 +12,8 @@
 
 **See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
 [Gitter](https://gitter.im/kriasoft/aspnet-starter-kit) or [Twitter](https://twitter.com/dotnetreact)
- &nbsp;|&nbsp; **Visit our sponsors**:
+&nbsp;|&nbsp; **Learn** [React.js and ES6](#learn-reactjs-and-es6)
+&nbsp;|&nbsp; **Visit our sponsors**:
 
 <a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
 <a href="https://localizejs.com/?cid=802&utm_source=rsk"><img src="https://koistya.github.io/files/localize-x64.png" alt="Localize" width="291" height="64"></a>
@@ -150,43 +151,13 @@ participate in discussions, upvote or downvote the issues you like or dislike, s
 requests](CONTRIBUTING.md#pull-requests).
 
 
-### Learn More
+### Learn React.js and ES6
 
-
-* **General**
-  * [.NET Core Documentation](https://dotnet.github.io/docs/) (core concepts: CoreFX, CoreCLR, Roslyn, .NET CLI tools etc.)
-  * [ASP.NET Core Documentation](https://docs.asp.net/en/latest/) (MVC, Razor, SignalR, Identity, routing, localization, caching etc.)
-  * [Entity Framework Core Documenation](https://docs.efproject.net/en/latest/) (providers, models, migrations, EF CLI tools etc.)
-  * [Facebook React Documentation](https://facebook.github.io/react/) ([getting started](https://facebook.github.io/react/docs/getting-started.html),
-    [thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html), [top-level API](https://facebook.github.io/react/docs/top-level-api.html),
-    [component API](https://facebook.github.io/react/docs/component-api.html) etc.)
-* **Hosting**
-  * [Running ASP.NET Core applications with IIS and Antares (Azure Web Apps)](https://blog.3d-logic.com/2016/06/08/running-asp-net-core-applications-with-iis-and-antares/) by [Pawel Kadluczka](https://blog.3d-logic.com)
-  * [How to set up ASP.NET Core DataProtection in a Web Farm](http://www.paraesthesia.com/archive/2016/06/15/set-up-asp-net-dataprotection-in-a-farm/) by [Travis Illig](http://www.paraesthesia.com/)
-* **Books**
-  <table width="100%">
-    <tr>
-      <td width="185">
-        <a href="http://amzn.to/25J77RT">
-          <img src="http://ecx.images-amazon.com/images/I/51PoyFDMopL._SX150.jpg" width="150" height="185" alt="C# 6 and .NET Core 1.0: Modern Cross-Platform Development" />
-        </a>
-      </td>
-      <td>
-        <p>
-          <strong><a href="http://amzn.to/25J77RT">C# 6 and .NET Core 1.0: Modern Cross-Platform Development</a></strong><br />
-          <sup>by Mark J. Price (Mar 2016)</sup>
-        </p>
-        <p>
-          In this book you will learn how to build cross-platform applications using C# 6 and .NET
-          Core 1.0; how to build professional web applications with ASP.NET Core 1.0; how to improve
-          your application's performance using multitasking; learn Entity Framework Core 1.0 and
-          Code-First development approach; master object-oriented programming with C#; familiarize
-          yourself with cross-device app development using the Universal Windows Platform and XAML;
-          query and manipulate data using LINQ; protect your data by using encryption and hashing.
-        </p>
-      </td>
-    </tr>
-  </table>
+:mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
+:mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
+:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bzweBe)** by Stoyan Stefanov (Aug, 2016)<br>
+:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2bDmSmG)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
+:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bKpb4I)** by Kyle Simpson (Dec, 2015)<br>
 
 
 ### Related Projects
