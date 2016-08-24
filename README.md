@@ -155,11 +155,11 @@ requests](CONTRIBUTING.md#pull-requests).
 
 :mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
 :mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
-:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bzweBe)** by Stoyan Stefanov (Aug, 2016)<br>
-:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2bDmSmG)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
-:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bKpb4I)** by Kyle Simpson (Dec, 2015)<br>
-:green_book: &nbsp; **[C# 6 and .NET Core 1.0: Modern Cross-Platform Development](http://amzn.to/2btgwG7)** by Mark J. Price (Mar, 2016)<br>
-:green_book: &nbsp; **[Professional C# 6 and .NET Core 1.0](http://amzn.to/2btgHkV)** by Christian Nagel (Apr, 2016)<br>
+:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bBkZs1)** by Stoyan Stefanov (Aug, 2016)<br>
+:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2beVRI9)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
+:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bFzlqe)** by Kyle Simpson (Dec, 2015)<br>
+:green_book: &nbsp; **[C# 6 and .NET Core 1.0: Modern Cross-Platform Development](http://amzn.to/2beV5uS)** by Mark J. Price (Mar, 2016)<br>
+:green_book: &nbsp; **[Professional C# 6 and .NET Core 1.0](http://amzn.to/2bhILsn)** by Christian Nagel (Apr, 2016)<br>
 
 
 ### Related Projects
