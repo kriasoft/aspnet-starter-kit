@@ -42,6 +42,7 @@ module.exports = Base.extend({
           ignore: [
             '**/.git',
             '**/.npmignore',
+            '**/.travis.yml',
             '**/CONTRIBUTING.md',
           ],
         },

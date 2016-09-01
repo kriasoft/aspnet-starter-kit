@@ -33,7 +33,7 @@ module.exports = _yeomanGenerator.Base.extend({
     this.fs.copy(this.templatePath('**/*'), this.destinationRoot(), {
       globOptions: {
         dot: true,
-        ignore: ['**/.git', '**/.npmignore', '**/CONTRIBUTING.md']
+        ignore: ['**/.git', '**/.npmignore', '**/.travis.yml', '**/CONTRIBUTING.md']
       }
     });
   },
