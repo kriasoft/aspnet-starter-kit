@@ -16,21 +16,24 @@ import s from './Header.css';
 class Header extends React.Component {
 
   componentDidMount() {
-    window.componentHandler.upgradeElement(this.refs.root);
+    window.componentHandler.upgradeElement(this.root);
   }
 
   componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.refs.root);
+    window.componentHandler.downgradeElements(this.root);
   }
 
   render() {
     return (
-      <header className="mdl-layout__header mdl-layout__header--transparent" ref="root">
+      <header
+        ref={node => { this.root = node; }}
+        className="mdl-layout__header mdl-layout__header--transparent"
+      >
         <div className={`mdl-layout__header-row ${s.headerRow}`}>
           <Link className="mdl-layout-title" to="/">
             <Logo height={48} />
           </Link>
-          <div className="mdl-layout-spacer"></div>
+          <div className="mdl-layout-spacer" />
           <Navigation />
         </div>
       </header>

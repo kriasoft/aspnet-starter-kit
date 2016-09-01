@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-/* eslint-disable no-console, global-require */
+/* eslint-disable global-require, no-console, import/newline-after-import */
 
 const fs = require('fs');
 const del = require('del');

@@ -130,11 +130,11 @@ const config = {
         loader: path.resolve(__dirname, './client/utils/markdown-loader.js'),
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)(\?.*)$/,
         loader: 'url-loader?limit=10000',
       },
       {
-        test: /\.(eot|ttf|wav|mp3)$/,
+        test: /\.(eot|ttf|wav|mp3)(\?.*)$/,
         loader: 'file-loader',
       },
     ],
@@ -188,8 +188,10 @@ const config = {
 
 };
 
-// Integrate Webpack 2.x (replace 'es2015' preset with 'es2015-webpack')
-babelConfig.presets = babelConfig.presets.map(x => (x === 'es2015' ? `${x}-webpack` : x));
+// Integrate Webpack 2.x (disable ES2015 modules)
+babelConfig.presets[babelConfig.presets.indexOf('latest')] = ['latest', {
+  es2015: { modules: false },
+}];
 
 // Optimize the bundle in release (production) mode
 if (!isDebug) {

@@ -164,6 +164,7 @@ requests](CONTRIBUTING.md#pull-requests).
 
 ### Related Projects
 
+* [React App SDK](https://github.com/kriasoft/react-app) — build React applications with a single dev dependency and no build configuration
 * [React Starter Kit](https://github.com/kriasoft/react-starter-kit) — Isomorphic web app boilerplate (Node.js, Express, GraphQL, React)
 * [Babel Starter Kit](https://github.com/kriasoft/babel-starter-kit) — JavaScript library boilerplate (ES2015+, Babel, Rollup)
 * [ASP.NET Core Starter Kit `|>` F#](https://github.com/kriasoft/fsharp-starter-kit) — Web app boilerplate (F#, .NET Core, Kestrel, GraphQL, React)

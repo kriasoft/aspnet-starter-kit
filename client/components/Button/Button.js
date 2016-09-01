@@ -17,17 +17,20 @@ class Button extends React.Component {
   };
 
   componentDidMount() {
-    window.componentHandler.upgradeElement(this.refs.root);
+    window.componentHandler.upgradeElement(this.root);
   }
 
   componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.refs.root);
+    window.componentHandler.downgradeElements(this.root);
   }
 
   render() {
     const { className, ...other } = this.props;
     return (
-      <button className={cx('mdl-button mdl-js-button', className)} ref="root" {...other} />
+      <button
+        ref={node => { this.root = node; }}
+        className={cx('mdl-button mdl-js-button', className)} {...other}
+      />
     );
   }
 }

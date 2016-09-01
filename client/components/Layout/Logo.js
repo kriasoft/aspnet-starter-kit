@@ -13,8 +13,8 @@ function Logo({ width, height, ...other }) {
   return (
     <svg
       viewBox="0 0 500 516.813"
-      width={width || (height * 500 / 516.813)}
-      height={height || (width / 516.813 * 500)} {...other}
+      width={width || ((height * 500) / 516.813)}
+      height={height || ((width * 500) / 516.813)} {...other}
     >
       <path
         d="M483.292 64.07L372.104 19.5 178.024 208.5 61.15 119.534l-44.44 22.35-.045 233.313
