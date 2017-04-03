@@ -11,12 +11,12 @@
     "classnames": "2.2.5",
     "fastclick": "1.0.6",
     "history": "3.0.0",
-    "react": "15.3.1",
-    "react-dom": "15.3.1",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
     "react-mdl": "1.7.1",
     "react-redux": "5.0.0-beta.1",
-    "redux": "3.5.2",
-    "whatwg-fetch": "1.0.0"
+    "redux": "3.6.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
@@ -35,16 +35,17 @@
     "babel-runtime": "^6.11.6",
     "browser-sync": "^2.14.3",
     "chai": "^3.5.0",
-    "cpy": "^4.0.1",
-    "css-loader": "^0.24.0",
+    "cpy": "^5.0.0",
+    "css-loader": "^0.28.0",
     "del": "^2.2.2",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
-    "file-loader": "^0.9.0",
-    "front-matter": "^2.1.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "front-matter": "^2.1.2",
     "highlight.js": "^9.6.0",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.1",
@@ -69,10 +70,10 @@
     "style-loader": "^0.13.1",
     "stylelint": "^7.2.0",
     "stylelint-config-standard": "^13.0.0",
-    "url-loader": "^0.5.7",
-    "webpack": "2.1.0-beta.22",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.0",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.18.0"
   },
   "babel": {
     "presets": [
@@ -80,6 +81,7 @@
       "react"
     ],
     "plugins": [
+      "react-hot-loader/babel",
       "transform-class-properties",
       "transform-object-rest-spread",
       [
@@ -116,7 +118,7 @@
     }
   },
   "scripts": {
-    "postinstall": "dotnet restore server server.test",
+    "postinstall": "dotnet restore server && dotnet restore server.test",
     "eslint": "eslint client client.test run.js webpack.config.js",
     "stylelint": "stylelint \"client/components/**/*.css\" \"client/views/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
