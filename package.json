@@ -118,7 +118,7 @@
     }
   },
   "scripts": {
-    "postinstall": "dotnet restore server && dotnpnet restore server.test",
+    "postinstall": "dotnet restore server && dotnet restore server.test",
     "eslint": "eslint client client.test run.js webpack.config.js",
     "stylelint": "stylelint \"client/components/**/*.css\" \"client/views/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
