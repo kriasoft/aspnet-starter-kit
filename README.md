@@ -15,7 +15,7 @@
 &nbsp;|&nbsp; **Learn** [React.js, ES6 and ASP.NET Core](#learn-reactjs-es6-and-aspnet-core)
 &nbsp;|&nbsp; **Visit our sponsors**:
 
-<a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt"Rollbar" width="235" height="64"></a>
+<a href="https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-x64.png" alt="Rollbar" width="235" height="64"></a>
 <a href="https://localizejs.com/?cid=802&utm_source=rsk"><img src="https://koistya.github.io/files/localize-x64.png" alt="Localize" width="291" height="64"></a>
 
 
