@@ -170,6 +170,7 @@ requests](CONTRIBUTING.md#pull-requests).
 * [ASP.NET Core Starter Kit `|>` F#](https://github.com/kriasoft/fsharp-starter-kit) — Web app boilerplate (F#, .NET Core, Kestrel, GraphQL, React)
 * [Universal Router](https://github.com/kriasoft/universal-router) — Isomorphic router for web and single-page applications (SPA)
 * [Membership Database](https://github.com/membership/membership.db) — SQL database boilerplate for web app users, roles and auth tokens
+* [ASP.NET Core / React SPA Template App](https://github.com/bradyholt/aspnet-core-react-template) - ASP.NET Core / React SPA Template App with Entity Framework Core, PostgreSQL, JWT auth, CSS Modules, and Ansible provisioning and deployment roles.
 
 
 ### Get in Touch
