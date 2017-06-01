@@ -7,6 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+// tried to upgrade to version 4.6.1 from 3.0.0 of history but breaking changes, useQueries no longer exists
+// https://github.com/ReactTraining/history/issues/364
+// TODO: revisit this
+
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import useQueries from 'history/lib/useQueries';
 
