@@ -149,7 +149,8 @@ const config = {
             // CSS Nano http://cssnano.co/options/
             minimize: !isDebug,
           })}`,
-          'postcss-loader',
+          {loader: 'postcss-loader', options: { plugins: () => [ require('autoprefixer') ] }}, 
+
         ],
       },
       {
