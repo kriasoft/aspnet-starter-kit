@@ -78,9 +78,7 @@ const config = {
       filename: 'assets.json',
       prettyPrint: true,
     }),
-    
   ],
-
   // Options affecting the normal modules
   module: {
     loaders: [
@@ -190,7 +188,6 @@ babelConfig.presets[babelConfig.presets.indexOf('latest')] = ['latest', {
 
 // Optimize the bundle in release (production) mode
 if (!isDebug) {
-  config.plugins.push(new webpack.optimize.DedupePlugin());
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: isVerbose,
