@@ -11,7 +11,10 @@
 // https://github.com/ReactTraining/history/issues/364
 // TODO: revisit this
 
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import useQueries from 'history/lib/useQueries';
+import createHistory from 'history/createBrowserHistory';
+//import useQueries from 'history/lib/useQueries';
 
-export default useQueries(createBrowserHistory)();
+//export default useQueries(createBrowserHistory)();
+const history = createHistory();
+
+export default history;
