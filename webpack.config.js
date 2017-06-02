@@ -81,7 +81,7 @@ const config = {
   ],
   // Options affecting the normal modules
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         include: [
