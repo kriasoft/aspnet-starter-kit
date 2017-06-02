@@ -98,7 +98,8 @@ $ yo aspnetcore
 [`package.json`](package.json) files: 
 
 ```shell
-$ npm install                   # Install both Node.js and .NET Core dependencies
+$ npm install                   # Install both Node.js dependencies
+$ npm run postinstall           # Install .NET Core dependencies
 ```
 
 **Step 3**. Finally, launch your web app:
