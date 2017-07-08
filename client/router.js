@@ -62,13 +62,9 @@ function resolve(routes, context) {
         return Promise.all([
           route.load(),
           ...keys.map(key => {
-            //const query = route.data[key];
             const request = route.data[key];
-            
-            //const method = query.substring(0, query.indexOf(' ')); // GET
             const method = request.substring(0, request.indexOf(' '));
-            //const url = query.substr(query.indexOf(' ') + 1);      // /api/tasks/$id
-            let url = request.substr(request.indexOf(' ') + 1); 
+            let url = request.substr(request.indexOf(' ') + 1); // /api/tasks/$id
             // TODO: Replace query parameters with actual values coming from `params`
             Object.keys(query).forEach((k) => {
               url = url.replace(`${k}`, query[k]);
