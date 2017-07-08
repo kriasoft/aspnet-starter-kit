@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import { parse } from 'query-string';
 
 function decodeParam(val) {
   if (!(typeof val === 'string' || val.length === 0)) {
@@ -50,6 +51,7 @@ function matchURI(route, path) {
 function resolve(routes, context) {
   for (const route of routes) {
     const params = matchURI(route, context.error ? '/error' : context.pathname);
+    const query = parse(context.search);
 
     if (params) {
       // Check if the route has any data requirements, for example:
@@ -60,10 +62,13 @@ function resolve(routes, context) {
         return Promise.all([
           route.load(),
           ...keys.map(key => {
-            const query = route.data[key];
-            const method = query.substring(0, query.indexOf(' ')); // GET
-            const url = query.substr(query.indexOf(' ') + 1);      // /api/tasks/$id
+            const request = route.data[key];
+            const method = request.substring(0, request.indexOf(' '));
+            let url = request.substr(request.indexOf(' ') + 1); // /api/tasks/$id
             // TODO: Replace query parameters with actual values coming from `params`
+            Object.keys(query).forEach((k) => {
+              url = url.replace(`${k}`, query[k]);
+            });
             return fetch(url, { method }).then(resp => resp.json());
           }),
         ]).then(([Page, ...data]) => {
@@ -72,7 +77,7 @@ function resolve(routes, context) {
         });
       }
 
-      return route.load().then(Page => <Page route={{ ...route, params }} error={context.error} />);
+      return route.load().then(Page => <Page route={{ ...route, params, query }} error={context.error} />);
     }
   }
 

@@ -48,7 +48,7 @@ class Link extends React.Component {
 
   render() {
     const { to, ...props } = this.props; // eslint-disable-line no-use-before-define
-    return <a href={history.createHref(to)} {...props} onClick={this.handleClick} />;
+    return <a href={history.createHref({ pathname: to })} {...props} onClick={this.handleClick} />;
   }
 
 }
