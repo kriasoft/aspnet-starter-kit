@@ -5,8 +5,9 @@
 using System.IO;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +36,7 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {
             // https://docs.asp.net/en/latest/security/anti-request-forgery.html
-            services.AddAntiforgery(options => options.CookieName =  options.HeaderName = "X-XSRF-TOKEN");
+            services.AddAntiforgery(options => options.Cookie.Name =  options.HeaderName = "X-XSRF-TOKEN");
 
             // Register Entity Framework database context
             // https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html
@@ -47,6 +48,16 @@ namespace Server
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
+
+            if (!string.IsNullOrEmpty(Configuration["Authentication:Facebook:AppId"]))
+            {
+                services.AddAuthentication()
+                    .AddFacebook(o =>
+                    {
+                        o.AppId = Configuration["facebook:appid"];
+                        o.AppSecret = Configuration["facebook:appsecret"];
+                    });
+            }
 
             services.AddMvcCore()
                 .AddAuthorization()
@@ -68,19 +79,7 @@ namespace Server
 
             // Enable external authentication provider(s)
             // https://docs.asp.net/en/latest/security/authentication/sociallogins.html
-            app.UseIdentity();
-
-            if (!string.IsNullOrEmpty(Configuration["Authentication:Facebook:AppId"]))
-            {
-                app.UseFacebookAuthentication(new FacebookOptions
-                {
-                    AppId = Configuration["Authentication:Facebook:AppId"],
-                    AppSecret = Configuration["Authentication:Facebook:AppSecret"],
-                    Scope = { "email" },
-                    Fields = { "name", "email" },
-                    SaveTokens = true,
-                });
-            }
+            app.UseAuthentication();
 
             // Configure ASP.NET MVC
             // https://docs.asp.net/en/latest/mvc/index.html
