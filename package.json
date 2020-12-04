@@ -47,7 +47,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "front-matter": "^2.1.2",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.4.1",
     "json-loader": "^0.5.4",
     "markdown-it": "^8.3.1",
     "mkdirp": "^0.5.1",
